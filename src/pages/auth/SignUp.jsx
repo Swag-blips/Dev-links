@@ -1,9 +1,10 @@
 import React from "react";
-import logo from "../assets/images/logo-devlinks-large.svg";
-import emailIcon from "../assets/images/icon-email.svg";
-import passwordIcon from "../assets/images/icon-password.svg";
+import logo from "../../assets/images/logo-devlinks-large.svg";
+import emailIcon from "../../assets/images/icon-email.svg";
+import passwordIcon from "../../assets/images/icon-password.svg";
+import { Link } from "react-router-dom";
 
-const Login = () => {
+const SignUp = () => {
   return (
     <main className="bg-[#fff] h-screen p-[1px]">
       <div className="mt-[32px] ml-[32px]">
@@ -11,9 +12,9 @@ const Login = () => {
       </div>
       <div className="mt-[64px] ml-[32px] mr-[32px]">
         <div className="flex justify-center gap-[8px] flex-col">
-          <h2 className="font-bold text-[24px]">Login</h2>
+          <h2 className="font-bold text-[24px]">Create account</h2>
           <p className="text-[16px] font-regular text-[#737373]">
-            Add your details below to get back into the app
+            Let’s get you started sharing your links!
           </p>
         </div>
         <form className="mt-[40px] flex flex-col justify-center gap-[24px]">
@@ -39,7 +40,27 @@ const Login = () => {
 
           <div className="flex justify-center flex-col gap-[4px] text-[#333333]">
             <label htmlFor="password" className="text-[12px]">
-              Password
+              Create password
+            </label>
+            <div className="relative">
+              <img
+                src={passwordIcon}
+                alt="Password Icon"
+                className="absolute left-3 top-1/2 transform -translate-y-1/2"
+              />
+              <input
+                type="password"
+                name="password"
+                id="password"
+                placeholder="Enter your password"
+                className="border border-[#D9D9D9] px-4 py-3 rounded-[8px] pl-[40px] w-full"
+              />
+            </div>
+          </div>
+
+          <div className="flex justify-center flex-col gap-[4px] text-[#333333]">
+            <label htmlFor="password" className="text-[12px]">
+              Confirm password
             </label>
             <div className="relative">
               <img
@@ -58,12 +79,14 @@ const Login = () => {
           </div>
 
           <button className="bg-[#633CFF] px-[27px] py-[11px] rounded-[8px] text-[12px] text-[#fff]">
-            Login
+            Create new account
           </button>
 
           <div className="text-center ">
-            <p className="text-[#737373]">Dont have an account?</p>
-            <p className="text-[#633CFF]">Create an account</p>
+            <p className="text-[#737373]">Already have an account?</p>
+            <Link to="/login">
+              <p className="text-[#633CFF]">Login</p>
+            </Link>
           </div>
         </form>
       </div>
@@ -71,4 +94,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;
