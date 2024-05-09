@@ -67,7 +67,7 @@ const Login = () => {
               Login
             </button>
 
-            <div className="text-center ">
+            <div className="text-center md:flex md:items-center md:justify-center gap-[3px] ">
               <p className="text-[#737373]">Dont have an account?</p>
               <Link to="/signup">
                 <p className="text-[#633CFF]">Create an account</p>

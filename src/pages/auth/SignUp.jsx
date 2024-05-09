@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../../assets/images/logo-devlinks-large.svg";
 import emailIcon from "../../assets/images/icon-email.svg";
 import passwordIcon from "../../assets/images/icon-password.svg";
 import { Link } from "react-router-dom";
+import { signup } from "../../../helpers/Auth";
 
 const SignUp = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
+
   return (
     <div className="md:flex md:justify-center md:flex-col md:items-center h-screen rounded-[12px]">
       <div className="hidden md:block mt-[32px] ml-[32px]">
@@ -37,7 +43,9 @@ const SignUp = () => {
                   name="email"
                   id="email"
                   placeholder="e.g. alex@email.com"
-                  className="border border-[#D9D9D9] px-4 py-3 rounded-[8px] pl-[40px] w-full"
+                  className="border border-[#D9D9D9] px-4 outline-none py-3 rounded-[8px] pl-[40px] w-full focus-within:border-[#633CFF] focus:border-[1px] focus:shadow-[0_0_8px_2px_rgba(99,60,255,0.6)]"
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
                 />
               </div>
             </div>
@@ -57,7 +65,9 @@ const SignUp = () => {
                   name="password"
                   id="password"
                   placeholder="Enter your password"
-                  className="border border-[#D9D9D9] px-4 py-3 rounded-[8px] pl-[40px] w-full"
+                  className="border border-[#D9D9D9] px-4 outline-none py-3 rounded-[8px] pl-[40px] w-full focus-within:border-[#633CFF] focus:border-[1px] focus:shadow-[0_0_8px_2px_rgba(99,60,255,0.6)]"
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
                 />
               </div>
             </div>
@@ -77,7 +87,9 @@ const SignUp = () => {
                   name="password"
                   id="password"
                   placeholder="Enter your password"
-                  className="border border-[#D9D9D9] px-4 py-3 rounded-[8px] pl-[40px] w-full"
+                  className="border border-[#D9D9D9] px-4 outline-none py-3 rounded-[8px] pl-[40px] w-full focus-within:border-[#633CFF] focus:border-[1px] focus:shadow-[0_0_8px_2px_rgba(99,60,255,0.6)]"
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  required
                 />
               </div>
             </div>
@@ -86,7 +98,7 @@ const SignUp = () => {
               Create new account
             </button>
 
-            <div className="text-center ">
+            <div className="text-center md:flex md:items-center md:justify-center gap-[3px] ">
               <p className="text-[#737373]">Already have an account?</p>
               <Link to="/login">
                 <p className="text-[#633CFF]">Login</p>
