@@ -5,7 +5,13 @@ export function getErrorMessage(error) {
     return "Email already exists";
   } else if (error.code === "auth/invalid-email") {
     return "Invalid email";
+  } else if (error.code === "auth/invalid-credential") {
+    return "Invalid Email or password";
   } else {
-    return "An unexpected error occurred. Please try again.";
+    // Log for debugging
+    console.log("Unhandled error:", error);
+    return `Error: ${
+      error.message || "An unexpected error occurred. Please try again."
+    }`;
   }
 }
