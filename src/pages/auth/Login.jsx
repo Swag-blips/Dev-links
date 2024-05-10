@@ -63,7 +63,7 @@ const Login = () => {
               </div>
             </div>
 
-            <button className="bg-[#633CFF] px-[27px] py-[11px] rounded-[8px] text-[12px] text-[#fff]">
+            <button className="bg-[#633CFF] hover:bg-[#BEADFF]  px-[27px] py-[11px] rounded-[8px] text-[12px] text-[#fff]">
               Login
             </button>
 
