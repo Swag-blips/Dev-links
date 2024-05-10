@@ -5,6 +5,8 @@ import passwordIcon from "../../assets/images/icon-password.svg";
 import { Link } from "react-router-dom";
 import { signup } from "../../../helpers/Auth";
 import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import { getErrorMessage } from "../../../utils/ErrorHandler";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -15,6 +17,7 @@ const SignUp = () => {
     password: "",
     confirmPassword: "",
   });
+  const navigate = useNavigate();
 
   const validateForm = () => {
     let formIsValid = true;
@@ -53,8 +56,9 @@ const SignUp = () => {
               setPassword("");
               setConfirmPassword("");
               return "Account created successfully";
+              navigate.to("/");
             },
-            error: (err) => err.toString(),
+            error: (err) => getErrorMessage(err),
           });
         } else {
           setErrors({ ...errors, confirmPassword: "Passwords do not match" });

@@ -7,6 +7,7 @@ import { Toaster } from "react-hot-toast";
 import Login from "./pages/auth/Login.jsx";
 import ErrorPage from "./pages/Error.jsx";
 import SignUp from "./pages/auth/SignUp.jsx";
+import HomePage from "./pages/HomePage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,11 @@ const router = createBrowserRouter([
   {
     path: "/signup",
     element: <SignUp />,
+    error: <ErrorPage />,
+  },
+  {
+    path: "/",
+    element: <HomePage />,
     error: <ErrorPage />,
   },
 ]);
