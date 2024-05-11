@@ -40,7 +40,7 @@ const LoginInput = () => {
           success: () => {
             setEmail("");
             setPassword("");
-            navigate.to("/");
+            navigate("/");
             return "login successful";
           },
           error: (err) => getErrorMessage(err),

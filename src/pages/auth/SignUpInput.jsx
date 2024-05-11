@@ -48,26 +48,32 @@ const SignupInput = () => {
     if (validateForm()) {
       try {
         if (password === confirmPassword) {
+          // Use toast.promise to handle the signup process
           toast.promise(signup(email, password), {
-            loading: "signing up...",
+            loading: "Signing up...",
             success: () => {
+              // Reset form upon successful signup
               setEmail("");
               setPassword("");
               setConfirmPassword("");
-              navigate.to("/");
+              navigate("/");
               return "Account created successfully";
             },
-            error: (err) => getErrorMessage(err),
+            error: (err) => {
+              // Log and return the error message
+              console.error("Signup error:", err);
+              return getErrorMessage(err);
+            },
           });
         } else {
           setErrors({ ...errors, confirmPassword: "Passwords do not match" });
         }
       } catch (err) {
-        console.log(err.message);
+        // Log unexpected errors
+        console.error("Unexpected error during signup:", err.message);
       }
     }
   };
-
   const handleInputChange = (fieldName, value) => {
     // Update the field value
     if (fieldName === "email") setEmail(value);
