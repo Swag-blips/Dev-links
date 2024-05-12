@@ -37,7 +37,7 @@ const Profile = () => {
                 <Github color="#ffffff" width="24" height="24" />
                 <p className="text-[16px] text-white">GitHub</p>
               </div>
-              <img src={arrowRight} alt="arrow right" className="" />
+              <img src={arrowRight} alt="arrow right" >
             </div>
           </div>
           <div className="bg-[#EE3939] flex items-center justify-between  px-[16px] space-x-2 w-[237px] h-[56px] rounded-[8px] ">
@@ -45,14 +45,14 @@ const Profile = () => {
               <Youtube color="#ffffff" width="24" height="24" />
               <p className="text-[16px] text-white">YouTube</p>
             </div>
-            <img src={arrowRight} alt="arrow right" className="" />
+            <img src={arrowRight} alt="arrow right"  />
           </div>
           <div className="bg-[#2D68FF] flex items-center justify-between  px-[16px] space-x-2 w-[237px] h-[56px] rounded-[8px] ">
             <div className="flex items-center space-x-2 ">
               <LinkedIn color="#ffffff" width="24" height="24" />
               <p className="text-[16px] text-white">LinkedIn</p>
             </div>
-            <img src={arrowRight} alt="arrow right" className="" />
+            <img src={arrowRight} alt="arrow right"/>
           </div>
         </div>
       </main>

@@ -1,11 +1,11 @@
 import React from "react";
 
-export const LinkedIn = ({ color }) => {
+export const LinkedIn = ({ color, width, height }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
+      width={width}
+      height={height}
       fill="none"
       viewBox="0 0 16 16"
     >
