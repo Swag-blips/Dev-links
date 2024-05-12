@@ -37,3 +37,13 @@ body {
     transform: rotate(360deg);
   }
 }
+
+.my-svg-alternate {
+  display: none;
+}
+.no-svg .my-svg-alternate {
+  display: block;
+  width: 100px;
+  height: 100px;
+  background-image: url(image.png);
+}

@@ -11,6 +11,7 @@ import HomePage from "./pages/HomePage.jsx";
 import PrivateRoute from "../routes/PrivateRoute.jsx";
 import { AuthProvider } from "../firebase/AuthContext.jsx";
 import PublicRoute from "../routes/PublicRoute.jsx";
+import Profile from "./pages/Profile.jsx";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,11 @@ const router = createBrowserRouter([
         <HomePage />
       </PrivateRoute>
     ),
+    error: <ErrorPage />,
+  },
+  {
+    path: "/profile/:id",
+    element: <Profile />,
     error: <ErrorPage />,
   },
 ]);
