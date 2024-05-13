@@ -1,7 +1,7 @@
 import React from "react";
-import EmptyLinks from "./EmptyLinks";
+import EmptyLinks from "./home/EmptyLinks";
 
-import SelectLink from "./SelectLink";
+import SelectLink from "./home/SelectLink";
 
 const Main = () => {
   return (

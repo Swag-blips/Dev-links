@@ -1,19 +1,19 @@
 import React, { useState } from "react";
-import iconGithub from "../assets/images/icon-github.svg";
-import iconFrontendMentor from "../assets/images/icon-frontend-mentor.svg";
-import iconStackOverflow from "../assets/images/icon-stack-overflow.svg";
-import iconTwitch from "../assets/images/icon-twitch.svg";
-import iconTwitter from "../assets/images/icon-twitter.svg";
-import iconLinkedIn from "../assets/images/icon-linkedin.svg";
-import iconGitLab from "../assets/images/icon-gitlab.svg";
-import iconFreeCodeCamp from "../assets/images/icon-freecodecamp.svg";
-import iconFacebook from "../assets/images/icon-facebook.svg";
-import iconHashNode from "../assets/images/icon-hashnode.svg";
-import iconYoutube from "../assets/images/icon-youtube.svg";
-import iconDevto from "../assets/images/icon-devto.svg";
-import iconCodeWars from "../assets/images/icon-codewars.svg";
-import iconCodePen from "../assets/images/icon-codepen.svg";
-import iconLink from "../assets/images/icon-link.svg";
+import iconGithub from "../../assets/images/icon-github.svg";
+import iconFrontendMentor from "../../assets/images/icon-frontend-mentor.svg";
+import iconStackOverflow from "../../assets/images/icon-stack-overflow.svg";
+import iconTwitch from "../../assets/images/icon-twitch.svg";
+import iconTwitter from "../../assets/images/icon-twitter.svg";
+import iconLinkedIn from "../../assets/images/icon-linkedin.svg";
+import iconGitLab from "../../assets/images/icon-gitlab.svg";
+import iconFreeCodeCamp from "../../assets/images/icon-freecodecamp.svg";
+import iconFacebook from "../../assets/images/icon-facebook.svg";
+import iconHashNode from "../../assets/images/icon-hashnode.svg";
+import iconYoutube from "../../assets/images/icon-youtube.svg";
+import iconDevto from "../../assets/images/icon-devto.svg";
+import iconCodeWars from "../../assets/images/icon-codewars.svg";
+import iconCodePen from "../../assets/images/icon-codepen.svg";
+import iconLink from "../../assets/images/icon-link.svg";
 
 import Select from "react-select";
 

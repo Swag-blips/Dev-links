@@ -7,12 +7,11 @@ import { Toaster } from "react-hot-toast";
 import Login from "./pages/auth/Login.jsx";
 import ErrorPage from "./pages/Error.jsx";
 import SignUp from "./pages/auth/SignUp.jsx";
-import HomePage from "./pages/HomePage.jsx";
+import HomePage from "./pages/home/HomePage.jsx";
 import PrivateRoute from "../routes/PrivateRoute.jsx";
 import { AuthProvider } from "../firebase/AuthContext.jsx";
 import PublicRoute from "../routes/PublicRoute.jsx";
-import Profile from "./pages/Profile.jsx";
-
+import Profile from "./pages/profile/Profile.jsx";
 const router = createBrowserRouter([
   {
     path: "/login",

@@ -1,5 +1,5 @@
 import React from "react";
-import emptyIllustration from "../assets/images/illustration-empty.svg";
+import emptyIllustration from "../../assets/images/illustration-empty.svg";
 
 const EmptyLinks = () => {
   return (
