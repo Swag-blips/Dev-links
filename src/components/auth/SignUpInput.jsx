@@ -6,6 +6,9 @@ import { signup } from "../../../helpers/Auth";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { getErrorMessage } from "../../../utils/ErrorHandler";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "../../../firebase/config.jsx";
+import useAuth from "../../../firebase/AuthContext.jsx";
 
 const SignupInput = () => {
   const [email, setEmail] = useState("");
@@ -17,6 +20,7 @@ const SignupInput = () => {
     confirmPassword: "",
   });
   const navigate = useNavigate();
+  const { currentUser } = useAuth();
 
   const validateForm = () => {
     let formIsValid = true;
@@ -47,40 +51,41 @@ const SignupInput = () => {
     e.preventDefault();
     if (validateForm()) {
       try {
-        if (password === confirmPassword) {
-          // Use toast.promise to handle the signup process
-          toast.promise(signup(email, password), {
-            loading: "Signing up...",
-            success: () => {
-              // Reset form upon successful signup
-              setEmail("");
-              setPassword("");
-              setConfirmPassword("");
-              navigate("/");
-              return "Account created successfully";
-            },
-            error: (err) => {
-              // Log and return the error message
-              console.error("Signup error:", err);
-              return getErrorMessage(err);
-            },
+        const userCredential = await toast.promise(signup(email, password), {
+          loading: "Signing up...",
+          success: "Account created successfully",
+          error: (err) => {
+            console.error("Signup error:", err);
+            return getErrorMessage(err);
+          },
+        });
+
+        if (userCredential.user) {
+          const user = userCredential.user;
+          await setDoc(doc(db, "Profile", user.uid), {
+            email: user.email,
+            firstName: "",
+            lastName: "",
+            profileImg: "",
           });
-        } else {
-          setErrors({ ...errors, confirmPassword: "Passwords do not match" });
+
+          // Reset form upon successful signup
+          setEmail("");
+          setPassword("");
+          setConfirmPassword("");
+          navigate("/");
         }
       } catch (err) {
-        // Log unexpected errors
         console.error("Unexpected error during signup:", err.message);
       }
     }
   };
+
   const handleInputChange = (fieldName, value) => {
-    // Update the field value
     if (fieldName === "email") setEmail(value);
     else if (fieldName === "password") setPassword(value);
     else if (fieldName === "confirmPassword") setConfirmPassword(value);
 
-    // Clear the error for this field
     setErrors({ ...errors, [fieldName]: "" });
   };
 

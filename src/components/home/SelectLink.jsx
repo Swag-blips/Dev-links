@@ -14,6 +14,7 @@ import iconDevto from "../../assets/images/icon-devto.svg";
 import iconCodeWars from "../../assets/images/icon-codewars.svg";
 import iconCodePen from "../../assets/images/icon-codepen.svg";
 import iconLink from "../../assets/images/icon-link.svg";
+import useAuth from "../../../firebase/AuthContext.jsx";
 
 import Select from "react-select";
 
@@ -74,6 +75,8 @@ const customStyles = {
 };
 
 const SelectLink = () => {
+  const { currentUser } = useAuth();
+
   const [selectedOption, setSelectedOption] = useState(null);
   return (
     <div className="mx-[24px] mt-[20px] flex flex-col gap-[12px]">
