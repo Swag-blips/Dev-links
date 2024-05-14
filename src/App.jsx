@@ -44,7 +44,11 @@ function App() {
     },
     {
       path: "/updateProfile",
-      element: <UpdateProfile />,
+      element: (
+        <PrivateRoute>
+          <UpdateProfile />
+        </PrivateRoute>
+      ),
       error: <ErrorPage />,
     },
   ]);
