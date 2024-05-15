@@ -9,6 +9,7 @@ import { getErrorMessage } from "../../../utils/ErrorHandler";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../../../firebase/config.jsx";
 import useAuth from "../../../firebase/AuthContext.jsx";
+import { validateForm } from "../../../utils/Validation.jsx";
 
 const SignupInput = () => {
   const [email, setEmail] = useState("");
@@ -22,34 +23,9 @@ const SignupInput = () => {
   const navigate = useNavigate();
   const { currentUser } = useAuth();
 
-  const validateForm = () => {
-    let formIsValid = true;
-    const newErrors = { email: "", password: "", confirmPassword: "" };
-
-    if (!email) {
-      newErrors.email = "Cant be empty";
-      formIsValid = false;
-    }
-    if (!password) {
-      newErrors.password = "Please check again";
-      formIsValid = false;
-    }
-    if (!confirmPassword) {
-      newErrors.confirmPassword = "Please check again";
-      formIsValid = false;
-    }
-    if (password && confirmPassword && password !== confirmPassword) {
-      newErrors.confirmPassword = "passwords do not match";
-      formIsValid = false;
-    }
-
-    setErrors(newErrors);
-    return formIsValid;
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (validateForm()) {
+    if (validateForm({ email, password, confirmPassword, setErrors })) {
       try {
         const userCredential = await toast.promise(signup(email, password), {
           loading: "Signing up...",
@@ -59,7 +35,6 @@ const SignupInput = () => {
             return getErrorMessage(err);
           },
         });
-
         if (userCredential.user) {
           const user = userCredential.user;
           await setDoc(doc(db, "Profile", user.uid), {
@@ -68,8 +43,6 @@ const SignupInput = () => {
             lastName: "",
             profileImg: "",
           });
-
-          // Reset form upon successful signup
           setEmail("");
           setPassword("");
           setConfirmPassword("");

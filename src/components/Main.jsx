@@ -1,9 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 import EmptyLinks from "./home/EmptyLinks";
-
 import SelectLink from "./home/SelectLink";
+import { doc, setDoc, collection } from "firebase/firestore";
+import { db } from "../../firebase/config.jsx";
+import useAuth from "../../firebase/AuthContext.jsx";
+import { toast } from "react-hot-toast";
 
 const Main = () => {
+  const [link, setLink] = useState("");
+  const [platform, setPlatform] = useState("");
+  const [error, setError] = useState("");
+  const { currentUser } = useAuth();
+  const handleSave = async () => {
+    try {
+      if (!link || !platform) {
+        setError("Link or platform must be provided");
+        toast.error("Link or platfrom must be provided");
+        console.error("link or platform must be provided");
+        return;
+      }
+
+      const profileDocRef = doc(db, "Profile", currentUser.uid);
+      const linksCollectionRef = collection(profileDocRef, "ProfileLinks");
+      const newLinksDocRef = doc(linksCollectionRef);
+      const data = {
+        link,
+        platform,
+      };
+
+      const docSubmitted = await toast.promise(setDoc(newLinksDocRef, data), {
+        loading: "adding link",
+        success: "Link added Successfully",
+        error: (err) => console.error(err),
+      });
+
+      console.log("Link saved Successfully");
+    } catch (error) {
+      console.error(error);
+      toast.error(error);
+    }
+  };
   return (
     <main className="w-full p-[1px]">
       <section className="bg-white mx-[16px] my-[16px] rounded-[12px] h-auto">
@@ -23,12 +59,22 @@ const Main = () => {
             </button>
           </div>
           <div className="mx-[24px] rounded-[12px]  bg-[#FAFAFA] h-auto">
-            <SelectLink />
+            <SelectLink
+              platform={platform}
+              setPlatform={setPlatform}
+              link={link}
+              setLink={setLink}
+              error={error}
+              setError={error}
+            />
           </div>
         </div>
         <div className="border-t-[3px] border-[#fafafa] mt-[10px] pb-[10px]">
           <div className="mx-[16px] my-[16px]">
-            <button className="px-7 py-3 bg-[#D8CEFF] w-full text-white font-bold text-[12px]">
+            <button
+              onClick={handleSave}
+              className="px-7 py-3 bg-[#D8CEFF] w-full text-white font-bold text-[12px]"
+            >
               Save
             </button>
           </div>

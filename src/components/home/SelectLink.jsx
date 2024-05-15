@@ -14,7 +14,6 @@ import iconDevto from "../../assets/images/icon-devto.svg";
 import iconCodeWars from "../../assets/images/icon-codewars.svg";
 import iconCodePen from "../../assets/images/icon-codepen.svg";
 import iconLink from "../../assets/images/icon-link.svg";
-import useAuth from "../../../firebase/AuthContext.jsx";
 
 import Select from "react-select";
 
@@ -74,10 +73,24 @@ const customStyles = {
   }),
 };
 
-const SelectLink = () => {
-  const { currentUser } = useAuth();
-
+const SelectLink = ({
+  platform,
+  setPlatform,
+  setLink,
+  link,
+  error,
+  setError,
+}) => {
   const [selectedOption, setSelectedOption] = useState(null);
+
+const handlePlatformChange = (selectedOption) => {
+  setPlatform(selectedOption.value);
+};
+
+const handleLinkChange = (e) => {
+  setLink(e.target.value);
+};
+
   return (
     <div className="mx-[24px] mt-[20px] flex flex-col gap-[12px]">
       <div className="flex justify-between">
@@ -97,8 +110,8 @@ const SelectLink = () => {
             Platform
           </label>
           <Select
-            defaultValue={selectedOption}
-            onChange={setSelectedOption}
+            value={options.find((option) => option.value === platform)}
+            onChange={handlePlatformChange}
             options={options}
             formatOptionLabel={formatOptionLabel}
             styles={customStyles}
@@ -115,6 +128,7 @@ const SelectLink = () => {
               id="link"
               placeholder="e.g. https://www.github.com/johnappleseed"
               className="outline-none border-[1px] pl-[36px] pr-4 py-3 w-full rounded-[8px] focus-within:border-[#633CFF] focus:border-[1px] border-[#D9D9D9] mb-[20px]"
+              onChange={handleLinkChange}
             />
             <img
               src={iconLink}
@@ -124,6 +138,7 @@ const SelectLink = () => {
           </div>
         </div>
       </form>
+      {error && <p className="text-red-500">{error}</p>}
     </div>
   );
 };
