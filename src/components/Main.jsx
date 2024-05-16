@@ -1,45 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import EmptyLinks from "./home/EmptyLinks";
 import SelectLink from "./home/SelectLink";
 import { doc, setDoc, collection } from "firebase/firestore";
 import { db } from "../../firebase/config.jsx";
+import iconLink from "../assets/images/icon-link.svg";
 import useAuth from "../../firebase/AuthContext.jsx";
 import { toast } from "react-hot-toast";
+import { FetchLinks } from "../../utils/FetchLinks.jsx";
 
 const Main = () => {
-  const [link, setLink] = useState("");
-  const [platform, setPlatform] = useState("");
-  const [error, setError] = useState("");
-  const { currentUser } = useAuth();
-  const handleSave = async () => {
-    try {
-      if (!link || !platform) {
-        setError("Link or platform must be provided");
-        toast.error("Link or platfrom must be provided");
-        console.error("link or platform must be provided");
-        return;
-      }
+  const [links, setLinks] = useState([]);
 
-      const profileDocRef = doc(db, "Profile", currentUser.uid);
-      const linksCollectionRef = collection(profileDocRef, "ProfileLinks");
-      const newLinksDocRef = doc(linksCollectionRef);
-      const data = {
-        link,
-        platform,
-      };
-
-      const docSubmitted = await toast.promise(setDoc(newLinksDocRef, data), {
-        loading: "adding link",
-        success: "Link added Successfully",
-        error: (err) => console.error(err),
-      });
-
-      console.log("Link saved Successfully");
-    } catch (error) {
-      console.error(error);
-      toast.error(error);
-    }
+  const addNewLink = () => {
+    setLinks([...links, {}]);
   };
+
+  const removeLink = (index) => {
+    setLinks(links.filter((_, i) => i !== index));
+  };
+
   return (
     <main className="w-full p-[1px]">
       <section className="bg-white mx-[16px] my-[16px] rounded-[12px] h-auto">
@@ -54,27 +33,25 @@ const Main = () => {
         </div>
         <div className="flex flex-col gap-[24px]">
           <div className="flex flex-col pt-[40px] mx-[24px] p-[1px]">
-            <button className="border border-[#633CFF] text-[#633CFF] rounded-[8px] px-7 py-3">
+            <button
+              onClick={addNewLink}
+              className="border border-[#633CFF] text-[#633CFF] rounded-[8px] px-7 py-3"
+            >
               + Add a new link
             </button>
           </div>
-          <div className="mx-[24px] rounded-[12px]  bg-[#FAFAFA] h-auto">
-            <SelectLink
-              platform={platform}
-              setPlatform={setPlatform}
-              link={link}
-              setLink={setLink}
-              error={error}
-              setError={error}
-            />
-          </div>
+          {links.map((link, index) => (
+            <div
+              key={index}
+              className="mx-[24px] rounded-[12px]   bg-[#FAFAFA] h-auto"
+            >
+              <SelectLink index={index} removeLink={removeLink} />
+            </div>
+          ))}
         </div>
         <div className="border-t-[3px] border-[#fafafa] mt-[10px] pb-[10px]">
           <div className="mx-[16px] my-[16px]">
-            <button
-              onClick={handleSave}
-              className="px-7 py-3 bg-[#D8CEFF] w-full text-white font-bold text-[12px]"
-            >
+            <button className="px-7 py-3 bg-[#D8CEFF] w-full text-white font-bold text-[12px]">
               Save
             </button>
           </div>

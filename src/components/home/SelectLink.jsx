@@ -14,6 +14,7 @@ import iconDevto from "../../assets/images/icon-devto.svg";
 import iconCodeWars from "../../assets/images/icon-codewars.svg";
 import iconCodePen from "../../assets/images/icon-codepen.svg";
 import iconLink from "../../assets/images/icon-link.svg";
+import useAuth from "../../../firebase/AuthContext.jsx";
 
 import Select from "react-select";
 
@@ -73,24 +74,9 @@ const customStyles = {
   }),
 };
 
-const SelectLink = ({
-  platform,
-  setPlatform,
-  setLink,
-  link,
-  error,
-  setError,
-}) => {
+const SelectLink = ({ index, removeLink }) => {
+  const [link, setLink] = useState("");
   const [selectedOption, setSelectedOption] = useState(null);
-
-const handlePlatformChange = (selectedOption) => {
-  setPlatform(selectedOption.value);
-};
-
-const handleLinkChange = (e) => {
-  setLink(e.target.value);
-};
-
   return (
     <div className="mx-[24px] mt-[20px] flex flex-col gap-[12px]">
       <div className="flex justify-between">
@@ -99,9 +85,16 @@ const handleLinkChange = (e) => {
             <span className="bg-[#737373] w-[12px] h-[1px]"></span>
             <span className="bg-[#737373] w-[12px] h-[1px]"></span>
           </div>
-          <p className="font-bold text-[16px] text-[#737373]">Link #1</p>
+          <p className="font-bold text-[16px] text-[#737373]">
+            Link #{index + 1}
+          </p>
         </div>
-        <p className="text-[#737373] text-[16px]">Remove</p>
+        <p
+          onClick={() => removeLink(index)}
+          className="text-[#737373] text-[16px]"
+        >
+          Remove
+        </p>
       </div>
 
       <form className="flex flex-col gap-[12px]">
@@ -110,8 +103,8 @@ const handleLinkChange = (e) => {
             Platform
           </label>
           <Select
-            value={options.find((option) => option.value === platform)}
-            onChange={handlePlatformChange}
+            defaultValue={selectedOption}
+            onChange={setSelectedOption}
             options={options}
             formatOptionLabel={formatOptionLabel}
             styles={customStyles}
@@ -128,7 +121,7 @@ const handleLinkChange = (e) => {
               id="link"
               placeholder="e.g. https://www.github.com/johnappleseed"
               className="outline-none border-[1px] pl-[36px] pr-4 py-3 w-full rounded-[8px] focus-within:border-[#633CFF] focus:border-[1px] border-[#D9D9D9] mb-[20px]"
-              onChange={handleLinkChange}
+              onChange={() => setLink(e.target.value)}
             />
             <img
               src={iconLink}
@@ -138,7 +131,6 @@ const handleLinkChange = (e) => {
           </div>
         </div>
       </form>
-      {error && <p className="text-red-500">{error}</p>}
     </div>
   );
 };
