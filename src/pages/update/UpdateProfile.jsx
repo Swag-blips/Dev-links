@@ -6,7 +6,6 @@ const UpdateProfile = () => {
   return (
     <section>
       <Navbar />
-
       <main className="p-[1px]">
         <div className="my-[16px] mx-[16px] bg-[#fff] rounded-[8px] h-auto flex flex-col justify-center">
           <div className="flex flex-col gap-[8px]  mx-[24px] mt-[24px]">

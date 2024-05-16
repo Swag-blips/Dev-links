@@ -73,10 +73,22 @@ const customStyles = {
     color: isSelected ? "white" : provided.color,
   }),
 };
+const SelectLink = ({ index, link, updateLink, removeLink }) => {
+  const handleLinkChange = (e) => {
+    const newLink = e.target.value;
+    updateLink(index, { url: newLink });
+  };
 
-const SelectLink = ({ index, removeLink }) => {
-  const [link, setLink] = useState("");
-  const [selectedOption, setSelectedOption] = useState(null);
+  const handlePlatformChange = (option) => {
+    updateLink(index, { platform: option.value });
+  };
+
+  const inputStyle = (error) => {
+    return `border ${
+      error ? "border-[#FF3939]" : "border-[#D9D9D9]"
+    } px-4 outline-none py-3 rounded-[8px] pl-[40px] pr-[100px] w-full focus-within:border-[#633CFF] mb-[16px] focus:border-[1px] focus:shadow-[0_0_8px_2px_rgba(99,60,255,0.6)]`;
+  };
+
   return (
     <div className="mx-[24px] mt-[20px] flex flex-col gap-[12px]">
       <div className="flex justify-between">
@@ -103,8 +115,10 @@ const SelectLink = ({ index, removeLink }) => {
             Platform
           </label>
           <Select
-            defaultValue={selectedOption}
-            onChange={setSelectedOption}
+            defaultValue={options.find(
+              (option) => option.value === link.platform
+            )}
+            onChange={handlePlatformChange}
             options={options}
             formatOptionLabel={formatOptionLabel}
             styles={customStyles}
@@ -119,16 +133,20 @@ const SelectLink = ({ index, removeLink }) => {
               type="text"
               name="link"
               id="link"
+              value={link.url}
               placeholder="e.g. https://www.github.com/johnappleseed"
-              className="outline-none border-[1px] pl-[36px] pr-4 py-3 w-full rounded-[8px] focus-within:border-[#633CFF] focus:border-[1px] border-[#D9D9D9] mb-[20px]"
-              onChange={() => setLink(e.target.value)}
+              className={inputStyle(link.error)}
+              onChange={handleLinkChange}
             />
             <img
               src={iconLink}
               alt="Link Icon"
-              className="absolute left-[8px] top-[35%] translate-y-[-50%] w-[20px] h-[20px]"
+              className="absolute left-[8px] top-[40%] translate-y-[-50%] w-[20px] h-[20px]"
             />
           </div>
+          {link.error && (
+            <p className="text-red-500 text-[12px] mb-[16px]">{link.error}</p>
+          )}
         </div>
       </form>
     </div>
