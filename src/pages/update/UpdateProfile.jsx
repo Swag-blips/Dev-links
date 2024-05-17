@@ -4,7 +4,7 @@ import { validateProfileDetails } from "../../../utils/Validation";
 import { UploadImage } from "../../assets/icons";
 import { storage, db } from "../../../firebase/config";
 import { uploadBytes, getDownloadURL, ref } from "firebase/storage";
-import { setDoc, doc } from "firebase/firestore";
+import { setDoc, doc, getDoc } from "firebase/firestore";
 import toast from "react-hot-toast";
 import useAuth from "../../../firebase/AuthContext.jsx";
 
@@ -19,12 +19,12 @@ const UpdateProfile = () => {
   });
   const [file, setFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
+  const [originalData, setOriginalData] = useState({});
   const fileInputRef = useRef(null);
   const { currentUser } = useAuth();
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
-
     if (selectedFile) {
       setFile(selectedFile);
       generatePreview(selectedFile);
@@ -39,6 +39,7 @@ const UpdateProfile = () => {
       return downloadURL;
     } catch (err) {
       console.error(`An error occurred during image upload: ${err}`);
+      return null;
     }
   };
 
@@ -52,7 +53,7 @@ const UpdateProfile = () => {
         },
         { merge: true }
       );
-      console.log("Document successfully uploaded");
+      console.log("Image metadata successfully uploaded");
     } catch (err) {
       console.error(`An error occurred while saving metadata: ${err}`);
     }
@@ -71,11 +72,9 @@ const UpdateProfile = () => {
 
   const generatePreview = (file) => {
     const reader = new FileReader();
-
     reader.onloadend = () => {
       setPreviewUrl(reader.result);
     };
-
     reader.readAsDataURL(file);
   };
 
@@ -85,29 +84,28 @@ const UpdateProfile = () => {
 
   const handleSave = async (e) => {
     e.preventDefault();
-
     try {
-      if (
-        validateProfileDetails({ email, lastName, firstName, setErrors, file })
-      ) {
+      if (validateProfileDetails({ email, lastName, firstName, setErrors })) {
         const docRef = doc(db, "Profile", currentUser.uid);
-        await toast.promise(
-          setDoc(
-            docRef,
+        const updatedData = {};
+        if (firstName !== originalData.firstName) updatedData.firstName = firstName;
+        if (lastName !== originalData.lastName) updatedData.lastName = lastName;
+        if (email !== originalData.email) updatedData.email = email;
+
+        if (Object.keys(updatedData).length > 0) {
+          await toast.promise(
+            setDoc(docRef, updatedData, { merge: true }),
             {
-              firstName,
-              lastName,
-              email,
-            },
-            { merge: true }
-          ),
-          {
-            loading: "Saving details...",
-            success: "Details successfully saved!",
-            error: (errors) => `${errors}`,
-          }
-        );
-        await handleUpload();
+              loading: "Saving details...",
+              success: "Details successfully saved!",
+              error: (err) => `${err.message}`,
+            }
+          );
+          await handleUpload();
+          console.log(updatedData)
+        } else {
+          toast("No changes to save", { icon: "ℹ️" });
+        }
       }
     } catch (err) {
       console.error(`An error occurred during profile update: ${err}`);
@@ -119,6 +117,30 @@ const UpdateProfile = () => {
       errors[fieldName] ? "border-[#FF3939]" : "border-[#D9D9D9]"
     } px-4 py-3 rounded-[8px] outline-none focus-within:border-[#633CFF] focus:border-[1px] focus:shadow-[0_0_8px_2px_rgba(99,60,255,0.6)]`;
   };
+
+  const fetchDetails = async () => {
+    try {
+      const docRef = doc(db, "Profile", currentUser.uid);
+      const snapshot = await getDoc(docRef);
+      if (snapshot.exists()) {
+        const data = snapshot.data();
+        setEmail(data.email);
+        setFirstName(data.firstName);
+        setLastName(data.lastName);
+        setPreviewUrl(data.profileImage);
+        setOriginalData(data);
+        console.log(data)
+      } else {
+        console.log("No such document!");
+      }
+    } catch (err) {
+      console.error(`Error fetching details: ${err}`);
+    }
+  };
+
+  useEffect(() => {
+    fetchDetails();
+  }, []);
 
   return (
     <section>
@@ -143,7 +165,6 @@ const UpdateProfile = () => {
                   style={{ display: "none" }}
                   onChange={handleFileChange}
                 />
-
                 {previewUrl ? (
                   <div
                     className="relative group w-auto 2xs:w-[193px] h-[193px] rounded-[12px] overflow-hidden cursor-pointer"

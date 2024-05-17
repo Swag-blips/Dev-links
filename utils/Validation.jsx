@@ -54,7 +54,7 @@ export const validateProfileDetails = ({
 }) => {
   let isValid = true;
   const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-  let newError = { firstName: "", lastName: "", email: "", file: null };
+  let newError = { firstName: "", lastName: "", email: "" };
 
   if (!firstName) {
     isValid = false;
