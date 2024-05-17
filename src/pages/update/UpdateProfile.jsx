@@ -88,23 +88,29 @@ const UpdateProfile = () => {
       if (validateProfileDetails({ email, lastName, firstName, setErrors })) {
         const docRef = doc(db, "Profile", currentUser.uid);
         const updatedData = {};
-        if (firstName !== originalData.firstName) updatedData.firstName = firstName;
-        if (lastName !== originalData.lastName) updatedData.lastName = lastName;
-        if (email !== originalData.email) updatedData.email = email;
+
+        if (firstName !== originalData.firstName) {
+          updatedData.firstName = firstName;
+        }
+        if (lastName !== originalData.lastName) {
+          updatedData.lastName = lastName;
+        }
+        if (email !== originalData.email) {
+          updatedData.email = email;
+        }
+
+        console.log("Updated Data:", updatedData);
 
         if (Object.keys(updatedData).length > 0) {
-          await toast.promise(
-            setDoc(docRef, updatedData, { merge: true }),
-            {
-              loading: "Saving details...",
-              success: "Details successfully saved!",
-              error: (err) => `${err.message}`,
-            }
-          );
+          await toast.promise(setDoc(docRef, updatedData, { merge: true }), {
+            loading: "Saving details...",
+            success: "Details successfully saved!",
+            error: (err) => `${err.message}`,
+          });
           await handleUpload();
-          console.log(updatedData)
+          console.log("Successfully saved:", updatedData);
         } else {
-          toast("No changes to save", { icon: "ℹ️" });
+          toast.err("No changes to save", { icon: "ℹ️" });
         }
       }
     } catch (err) {
@@ -129,7 +135,7 @@ const UpdateProfile = () => {
         setLastName(data.lastName);
         setPreviewUrl(data.profileImage);
         setOriginalData(data);
-        console.log(data)
+        console.log("Fetched Data:", data);
       } else {
         console.log("No such document!");
       }

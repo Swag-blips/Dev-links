@@ -50,7 +50,6 @@ export const validateProfileDetails = ({
   setErrors,
   firstName,
   lastName,
-  file,
 }) => {
   let isValid = true;
   const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -70,10 +69,6 @@ export const validateProfileDetails = ({
   } else if (!emailPattern.test(email)) {
     isValid = false;
     newError.email = "Invalid email";
-  }
-  if (!file) {
-    isValid = false;
-    newError.file = "no selected image";
   }
 
   setErrors(newError);
