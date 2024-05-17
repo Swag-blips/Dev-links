@@ -9,7 +9,7 @@ import { getErrorMessage } from "../../../utils/ErrorHandler";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../../../firebase/config.jsx";
 import useAuth from "../../../firebase/AuthContext.jsx";
-import { validateForm } from "../../../utils/Validation.jsx";
+import { validateSignUp } from "../../../utils/Validation.jsx";
 
 const SignupInput = () => {
   const [email, setEmail] = useState("");
@@ -25,7 +25,7 @@ const SignupInput = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (validateForm({ email, password, confirmPassword, setErrors })) {
+    if (validateSignUp({ email, password, confirmPassword, setErrors })) {
       try {
         const userCredential = await toast.promise(signup(email, password), {
           loading: "Signing up...",

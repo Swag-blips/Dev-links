@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import { login } from "../../../helpers/Auth";
 import { getErrorMessage } from "../../../utils/ErrorHandler";
 import { useNavigate } from "react-router-dom";
+import { validateLogin } from "../../../utils/Validation.jsx";
 
 const LoginInput = () => {
   const [email, setEmail] = useState("");
@@ -13,27 +14,10 @@ const LoginInput = () => {
   const [errors, setErrors] = useState({ email: "", password: "" });
   const navigate = useNavigate();
 
-  const validateForm = () => {
-    let isValid = true;
-    const newError = { email: "", password: "" };
-
-    if (!email) {
-      newError.email = "Can't be empty";
-      isValid = false;
-    }
-    if (!password) {
-      newError.password = "Please check again";
-      isValid = false;
-    }
-
-    setErrors(newError);
-    return isValid;
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (validateForm()) {
+    if (validateLogin({ email, password, setErrors })) {
       try {
         toast.promise(login(email, password), {
           loading: "logging in",

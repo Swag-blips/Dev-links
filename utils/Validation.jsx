@@ -1,4 +1,4 @@
-export const validateForm = ({
+export const validateSignUp = ({
   setErrors,
   email,
   password,
@@ -26,6 +26,53 @@ export const validateForm = ({
 
   setErrors(newErrors);
   return formIsValid;
+};
+
+export const validateLogin = ({ email, password, setErrors }) => {
+  let isValid = true;
+  const newError = { email: "", password: "" };
+
+  if (!email) {
+    newError.email = "Can't be empty";
+    isValid = false;
+  }
+  if (!password) {
+    newError.password = "Please check again";
+    isValid = false;
+  }
+
+  setErrors(newError);
+  return isValid;
+};
+
+export const validateProfileDetails = ({
+  email,
+  setErrors,
+  firstName,
+  lastName,
+}) => {
+  let isValid = true;
+  const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  let newError = { firstName: "", lastName: "", email: "" };
+
+  if (!firstName) {
+    isValid = false;
+    newError.firstName = "Can't be empty";
+  }
+  if (!lastName) {
+    isValid = false;
+    newError.lastName = "Can't be empty";
+  }
+  if (!email) {
+    isValid = false;
+    newError.email = "Can't be empty";
+  } else if (!emailPattern.test(email)) {
+    isValid = false;
+    newError.email = "Invalid email";
+  }
+
+  setErrors(newError);
+  return isValid;
 };
 
 const urlValidationRules = {
