@@ -21,8 +21,8 @@ Your users should be able to:
 - Create, read, update, delete links and see previews in the mobile mockup
 - Receive validations if the links form is submitted without a URL or with the wrong URL pattern for the platform ✅
 - Drag and drop links to reorder them
-- Add profile details like profile picture, first name, last name, and email
-- Receive validations if the profile details form is saved with no first or last name
+- Add profile details like profile picture, first name, last name, and email✅
+- Receive validations if the profile details form is saved with no first or last name ✅
 - Preview their devlinks profile and copy the link to their clipboard
 - View the optimal layout for the interface depending on their device's screen size ✅
 - See hover and focus states for all interactive elements on the page ✅
@@ -44,7 +44,7 @@ Want some support on the challenge? [Join our community](https://www.frontendmen
   - You can use Web APIs like FileReader to handle the image upload. You can do this completely client-side if you're just building the front-end. If you're building full-stack, this is a nice opportunity to integrate with a media hosting service like Cloudinary and practice using their API. Remember to keep your API credentials secret if you choose this route! ✅
 - Preview
   - Clicking "Share Link" should copy the current URL to the user's clipboard and show the relevant toast message shown in the design.
-  - If you're building the project as a full-stack app, ensure only the current user can only see the header with the "Back to Editor" and "Share Link" call-to-actions if they are the same user as the one in the profile. If they're not, the header should disappear and they shouldn't be able to access the admin area.
+  - If you're building the project as a full-stack app, ensure only the current user can only see the header with the "Back to Editor" and "Share Link" call-to-actions if they are the same user as the one in the profile. If they're not, the header should disappear and they shouldn't be able to access the admin area. ✅
 
 ## Where to find everything
 
