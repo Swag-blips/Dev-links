@@ -52,7 +52,7 @@ const formatOptionLabel = ({ label, icon }, { context }) => {
   }
 
   return (
-    <div className="flex items-center gap-[12px]">
+    <div className="flex items-center gap-[12px] absolute left-0 bottom-[10%]">
       {icon && <img src={icon} alt={`${label} icon`} />}
       <div>{label}</div>
     </div>
@@ -141,7 +141,7 @@ const SelectLink = ({ index, link, updateLink, removeLink }) => {
             <img
               src={iconLink}
               alt="Link Icon"
-              className="absolute left-[8px] top-[40%] translate-y-[-50%] w-[20px] h-[20px]"
+              className="absolute left-[14px] top-[40%] translate-y-[-50%] w-[20px] h-[20px]"
             />
           </div>
           {link.error && (

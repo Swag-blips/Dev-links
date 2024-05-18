@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import logo from "../assets/images/logo-devlinks-small.svg";
+import logoMd from "../assets/images/logo-devlinks-large.svg";
 import link from "../assets/images/link-bold.svg";
 import user from "../assets/images/icon-user.svg";
 import eye from "../assets/images/icon-eye.svg";
@@ -20,28 +21,47 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-white w-full h-[74px] p-[1px]">
+    <nav className="bg-white w-full md:w-auto h-[74px] md:h-[78px] p-[1px] md:mx-[16px] md:my-[24px] md:rounded-[12px]">
       <div className="flex items-center justify-between ml-[24px] mr-[16px] my-[16px]">
         <figure>
-          <img src={logo} className="" alt="devlinks logo" />
+          <img src={logo} className="md:hidden" alt="devlinks logo" />
+          <img
+            src={logoMd}
+            className="hidden md:flex w-[146px] h-[32px]"
+            alt="devlinks logo md"
+          />
         </figure>
         <div className="flex items-center ">
           <Link to="/">
             <figure
-              className={` px-7 py-3 ${
+              className={` px-7 py-3 flex items-center gap-[8px] ${
                 isActiveLink ? "bg-[#EFEBFF] rounded-[8px]" : ""
               }`}
             >
               <img src={link} alt="dev link" />
+              <p
+                className={`hidden md:flex ${
+                  isActiveLink ? "text-[#633CFF]" : ""
+                } `}
+              >
+                Links
+              </p>
             </figure>
           </Link>
           <Link to="/updateProfile">
             <figure
-              className={`px-7 py-3 ${
+              className={`px-7 py-3 flex items-center gap-[8px] ${
                 isActiveUser ? "bg-[#EFEBFF] rounded-[8px] " : ""
               }`}
             >
               <img src={user} alt="user" />
+              <p
+                className={`hidden md:flex ${
+                  isActiveUser ? "text-[#633CFF]" : ""
+                }`}
+              >
+                Profile Details
+              </p>
             </figure>
           </Link>
         </div>
