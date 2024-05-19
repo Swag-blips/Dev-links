@@ -5,7 +5,7 @@ import { db } from "../../../firebase/config";
 import { doc, getDocs, getDoc, collection, query } from "firebase/firestore";
 import useAuth from "../../../firebase/AuthContext";
 import Spinner from "../../../helpers/Spinner";
-import { useNavigate } from "react-router-dom";
+
 
 const ProfileLinks = ({ isProfile }) => {
   const { id } = useParams();
@@ -14,6 +14,7 @@ const ProfileLinks = ({ isProfile }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { currentUser } = useAuth();
+
 
   const fetchDetails = async () => {
     try {
@@ -43,7 +44,6 @@ const ProfileLinks = ({ isProfile }) => {
       querySnapShot.forEach((doc) => {
         links.push({ id: doc.id, ...doc.data() });
       });
-
       setLinksData(links);
       console.log(linksData);
     } catch (err) {
@@ -51,6 +51,7 @@ const ProfileLinks = ({ isProfile }) => {
       setError(` an error occured${err}`);
     }
   };
+
 
   useEffect(() => {
     fetchDetails();
