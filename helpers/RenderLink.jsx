@@ -1,5 +1,6 @@
 import { Github, Youtube, LinkedIn, Twitch } from "../src/assets/icons";
 import arrowRight from "../src/assets/images/icon-arrow-right.svg";
+
 export const renderLink = (link) => {
   const { platform, url } = link;
   let bgColor, IconComponent, label;

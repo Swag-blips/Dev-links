@@ -86,7 +86,7 @@ const SelectLink = ({ index, link, updateLink, removeLink }) => {
   const inputStyle = (error) => {
     return `border ${
       error ? "border-[#FF3939]" : "border-[#D9D9D9]"
-    } px-4 outline-none py-3 rounded-[8px] pl-[40px] pr-[100px] w-full focus-within:border-[#633CFF] mb-[16px] focus:border-[1px] focus:shadow-[0_0_8px_2px_rgba(99,60,255,0.6)]`;
+    } px-4 outline-none py-3 rounded-[8px] pl-[40px] pr-[100px] w-full focus-within:border-[#633CFF] mb-[20px] focus:border-[1px] focus:shadow-[0_0_8px_2px_rgba(99,60,255,0.6)]`;
   };
 
   return (

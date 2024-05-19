@@ -45,6 +45,7 @@ const ProfileLinks = ({ isProfile }) => {
       });
 
       setLinksData(links);
+      console.log(linksData);
     } catch (err) {
       console.log(`an error occured ${err}`);
       setError(` an error occured${err}`);
