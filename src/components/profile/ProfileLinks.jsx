@@ -45,7 +45,6 @@ const ProfileLinks = ({ isProfile }) => {
       });
 
       setLinksData(links);
-    
     } catch (err) {
       console.log(`An error occurred: ${err}`);
       setError(`An error occurred: ${err}`);
@@ -118,7 +117,7 @@ const ProfileLinks = ({ isProfile }) => {
   };
 
   return (
-    <div>
+    <section className=" md:bg-white md:w-[349px] md:mb-[80px] shadow-lg">
       <div className="flex flex-col items-center gap-[24px]">
         {profileImage && (
           <img
@@ -139,7 +138,7 @@ const ProfileLinks = ({ isProfile }) => {
           <p>No links available</p>
         )}
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -65,8 +65,11 @@ const Navbar = () => {
             </figure>
           </Link>
         </div>
-        <figure className="border border-[#633CFF] px-4 py-3 rounded-[8px]">
-          <img onClick={navigateProfile} src={eye} className="md:hidden" />
+        <figure
+          onClick={navigateProfile}
+          className="border border-[#633CFF] px-4 py-3 rounded-[8px]"
+        >
+          <img src={eye} className="md:hidden" />
           <p className="hidden md:flex text-[16px] font-semibold text-[#633CFF]">
             Preview
           </p>
