@@ -110,7 +110,7 @@ const UpdateProfile = () => {
           await handleUpload();
           console.log("Successfully saved:", updatedData);
         } else {
-          toast.err("No changes to save", { icon: "ℹ️" });
+          toast.error("No changes to save", { icon: "ℹ️" });
         }
       }
     } catch (err) {
@@ -154,15 +154,19 @@ const UpdateProfile = () => {
       <main className="p-[1px]">
         <div className="my-[16px] mx-[16px] bg-[#fff] rounded-[8px] h-auto flex flex-col justify-center">
           <div className="flex flex-col gap-[8px] mx-[24px] mt-[24px]">
-            <h2 className="text-[24px] font-bold">Profile Details</h2>
+            <h2 className="text-[24px] md:text-[32px] font-bold">
+              Profile Details
+            </h2>
             <p className="text-[#737373] text-[16px]">
               Add your details to create a personal touch to your profile.
             </p>
           </div>
 
           <div className="flex flex-col justify-center h-auto rounded-[12px] mt-[40px] bg-[#fafafa] mx-[24px]">
-            <div className="flex flex-col justify-center gap-[16px] mx-[20px] my-[20px]">
-              <h2 className="text-[#737373] text-[16px]">Profile picture</h2>
+            <div className="flex flex-col  md:flex-row md:justify-between justify-center gap-[16px] mx-[20px] my-[20px]">
+              <h2 className="text-[#737373] text-[16px] md:flex md:items-center ">
+                Profile picture
+              </h2>
 
               <div className="flex flex-col gap-[24px] rounded-[12px] justify-center">
                 <input
@@ -171,46 +175,51 @@ const UpdateProfile = () => {
                   style={{ display: "none" }}
                   onChange={handleFileChange}
                 />
-                {previewUrl ? (
-                  <div
-                    className="relative group w-auto 2xs:w-[193px] h-[193px] rounded-[12px] overflow-hidden cursor-pointer"
-                    onClick={handleImageSelect}
-                  >
-                    <img
-                      src={previewUrl}
-                      alt="Image Preview"
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-70 transition-opacity duration-300 flex items-center justify-center">
-                      <div className="text-white text-[16px] font-bold opacity-0 group-hover:opacity-100 flex flex-col justify-center items-center transition-opacity duration-300">
-                        <UploadImage color="#FFFFFF" height="40" width="40" />
-                        Change Image
+                <div className=" flex flex-col md:flex-row md:flex gap-[24px] md:items-center">
+                  {previewUrl ? (
+                    <div
+                      className="relative group w-auto 2xs:w-[193px] h-[193px] rounded-[12px] overflow-hidden cursor-pointer"
+                      onClick={handleImageSelect}
+                    >
+                      <img
+                        src={previewUrl}
+                        alt="Image Preview"
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-70 transition-opacity duration-300 flex items-center justify-center">
+                        <div className="text-white text-[16px] font-bold opacity-0 group-hover:opacity-100 flex flex-col justify-center items-center transition-opacity duration-300">
+                          <UploadImage color="#FFFFFF" height="40" width="40" />
+                          Change Image
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ) : (
-                  <div
-                    onClick={handleImageSelect}
-                    className="bg-[#EFEBFF] w-[193px] h-[193px] cursor-pointer flex flex-col justify-center rounded-[12px] items-center"
-                  >
-                    <UploadImage color="#633CFF" width="40" height="40" />
-                    <p className="text-[#633CFF] text-[16px] font-bold">
-                      + Upload image
-                    </p>
-                  </div>
-                )}
+                  ) : (
+                    <div
+                      onClick={handleImageSelect}
+                      className="bg-[#EFEBFF] w-[193px] h-[193px] cursor-pointer flex flex-col justify-center rounded-[12px] items-center"
+                    >
+                      <UploadImage color="#633CFF" width="40" height="40" />
+                      <p className="text-[#633CFF] text-[16px] font-bold">
+                        + Upload image
+                      </p>
+                    </div>
+                  )}
+
+                  <p className="text-[#737373] text-[12px] md:w-[127px]">
+                    Image must be below 1024x1024px. Use PNG or JPG format.
+                  </p>
+                </div>
               </div>
-              <p className="text-[#737373] text-[12px]">
-                Image must be below 1024x1024px. Use PNG or JPG format.
-              </p>
             </div>
           </div>
 
           <div className="flex flex-col justify-center h-auto rounded-[12px] mt-[24px] bg-[#fafafa] mx-[24px]">
             <form className="flex flex-col mx-[20px] gap-[12px] my-[20px]">
-              <div className="flex flex-col gap-[4px]">
-                <label htmlFor="first-name">First name*</label>
-                <div className="relative">
+              <div className="flex flex-col md:flex-row md:items-center w-full md:gap-[16px]  gap-[4px]">
+                <div className="md:w-[240px]">
+                  <label htmlFor="first-name ">First name*</label>
+                </div>
+                <div className="relative md:w-full">
                   <input
                     type="text"
                     name="first-name"
@@ -228,9 +237,11 @@ const UpdateProfile = () => {
                 </div>
               </div>
 
-              <div className="flex flex-col gap-[4px]">
-                <label htmlFor="last-name">Last name*</label>
-                <div className="relative">
+              <div className="flex flex-col gap-[4px] w-full md:flex-row md:items-center md:gap-[16px]">
+                <div className="md:w-[240px]">
+                  <label htmlFor="last-name">Last name*</label>
+                </div>
+                <div className="relative md:w-full">
                   <input
                     type="text"
                     name="last-name"
@@ -248,9 +259,11 @@ const UpdateProfile = () => {
                 </div>
               </div>
 
-              <div className="flex flex-col gap-[4px]">
-                <label htmlFor="email">Email*</label>
-                <div className="relative">
+              <div className="flex flex-col gap-[4px] w-full md:flex-row md:items-center md:gap-[16px]">
+                <div className="md:w-[240px]">
+                  <label htmlFor="email">Email*</label>
+                </div>
+                <div className="relative md:w-full">
                   <input
                     type="email"
                     className={inputStyle("email")}
@@ -268,10 +281,10 @@ const UpdateProfile = () => {
             </form>
           </div>
 
-          <div className="mx-[16px] my-[16px] border-t-[1px] border-[#D9D9D9]">
+          <div className="mx-[16px] my-[16px] md:mr-[24px] border-t-[1px] border-[#D9D9D9] flex justify-end">
             <button
               onClick={handleSave}
-              className="my-[16px] w-full py-[16px] text-[16px] font-bold bg-[#633CFF] rounded-[8px] text-[#fff]"
+              className="my-[16px] py-[16px] w-full md:w-[91px] text-[16px] font-bold bg-[#633CFF] rounded-[8px] text-[#fff]"
             >
               Save
             </button>
