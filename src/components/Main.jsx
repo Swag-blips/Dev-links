@@ -133,7 +133,7 @@ const Main = () => {
     <main className="w-full p-[1px]">
       <section className="bg-white mx-[16px] my-[16px] rounded-[12px] h-auto">
         <div className="flex flex-col pt-[24px] mx-[24px] p-[1px]">
-          <h2 className="font-bold text-[24px] text-[#333333]">
+          <h2 className="font-bold text-[24px] md:text-[32px] text-[#333333]">
             Customize your links
           </h2>
           <p className="text-[#737373] text-[16px] mt-[8px]">
@@ -145,7 +145,7 @@ const Main = () => {
           <div className="flex flex-col pt-[40px] mx-[24px] p-[1px]">
             <button
               onClick={addNewLink}
-              className="border border-[#633CFF] text-[#633CFF] rounded-[8px] px-7 py-3"
+              className="border border-[#633CFF] text-[16px] text-[#633CFF] rounded-[8px] px-7 py-3"
             >
               + Add a new link
             </button>
@@ -173,11 +173,13 @@ const Main = () => {
             </div>
           )}
         </div>
-        <div className="border-t-[3px] border-[#fafafa] mt-[10px] pb-[10px]">
-          <div className="mx-[16px] my-[16px]">
+        <div className="border-t-[3px] bottom-0 sticky bg-white border-[#fafafa] mt-[10px] pb-[10px] flex justify-end">
+          <div className="mx-[16px] my-[16px] w-full md:w-auto">
             <button
               onClick={handleSave}
-              className="px-7 py-3 bg-[#633CFF] w-full text-white font-bold text-[12px]"
+              className={`px-7 py-3 rounded-[8px] md:w-[91px]  ${
+                links ? "bg-[#633CFF]" : "opacity-[25%]"
+              } w-full md:mr-[10px] text-white font-bold text-[12px]`}
             >
               Save
             </button>

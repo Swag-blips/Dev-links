@@ -41,7 +41,7 @@ const Navbar = () => {
               <img src={link} alt="dev link" />
               <p
                 className={`hidden md:flex ${
-                  isActiveLink ? "text-[#633CFF]" : ""
+                  isActiveLink ? "text-[#633CFF] font-semibold" : ""
                 } `}
               >
                 Links
@@ -56,8 +56,8 @@ const Navbar = () => {
             >
               <img src={user} alt="user" />
               <p
-                className={`hidden md:flex ${
-                  isActiveUser ? "text-[#633CFF]" : ""
+                className={`hidden font- md:flex ${
+                  isActiveUser ? "text-[#633CFF] font-semibold" : ""
                 }`}
               >
                 Profile Details
@@ -66,7 +66,10 @@ const Navbar = () => {
           </Link>
         </div>
         <figure className="border border-[#633CFF] px-4 py-3 rounded-[8px]">
-          <img onClick={navigateProfile} src={eye} className="" />
+          <img onClick={navigateProfile} src={eye} className="md:hidden" />
+          <p className="hidden md:flex text-[16px] font-semibold text-[#633CFF]">
+            Preview
+          </p>
         </figure>
       </div>
     </nav>

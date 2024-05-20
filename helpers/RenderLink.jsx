@@ -1,6 +1,7 @@
 import { Github, Youtube, LinkedIn, Twitch } from "../src/assets/icons";
 import arrowRight from "../src/assets/images/icon-arrow-right.svg";
 
+
 export const renderLink = (link) => {
   const { platform, url } = link;
   let bgColor, IconComponent, label;
@@ -22,7 +23,7 @@ export const renderLink = (link) => {
       label = "LinkedIn";
       break;
     case "Twitch":
-      bgColor = "bg-[#EE3FC8]";
+      bgColor = "bg-fuchsia-500";
       IconComponent = Twitch;
       label = "Twitch";
       break;
@@ -33,7 +34,7 @@ export const renderLink = (link) => {
   return (
     <div
       key={link.id}
-      className={`flex items-center justify-between px-[16px] space-x-2 w-[237px] h-[56px] rounded-[8px] ${bgColor}`}
+      className={`flex items-center justify-between px-[16px] z-20 space-x-2 w-[237px] h-[56px] rounded-[8px] ${bgColor}`}
     >
       <a
         href={url}
