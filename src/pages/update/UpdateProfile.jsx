@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import Navbar from "../../components/Navbar";
+
 import { validateProfileDetails } from "../../../utils/Validation";
 import { UploadImage } from "../../assets/icons";
 import { storage, db } from "../../../firebase/config";
@@ -59,8 +59,6 @@ const UpdateProfile = () => {
     }
   };
 
-
-
   const generatePreview = (file) => {
     const reader = new FileReader();
     reader.onloadend = () => {
@@ -95,8 +93,8 @@ const UpdateProfile = () => {
           if (downloadURL) {
             updatedData.profileImg = downloadURL;
             await saveImageMetaData(downloadURL);
-          } else{
-            console.warn("no image selected")
+          } else {
+            console.warn("no image selected");
           }
         }
 
@@ -150,10 +148,9 @@ const UpdateProfile = () => {
 
   return (
     <section>
-      <Navbar />
-      <main className="p-[1px]">
-        <div className="my-[16px] mx-[16px] bg-[#fff] rounded-[8px] h-auto flex flex-col justify-center">
-          <div className="flex flex-col gap-[8px] mx-[24px] mt-[24px]">
+      <main className="p-[1px] ">
+        <div className="my-[16px] xl:pb-[75px] xl:m mx-[16px] bg-[#fff] rounded-[8px]  flex flex-col justify-center">
+          <div className="flex flex-col gap-[8px] mx-[24px] mt-[24px] xl:mt-[40px]">
             <h2 className="text-[24px] md:text-[32px] font-bold">
               Profile Details
             </h2>

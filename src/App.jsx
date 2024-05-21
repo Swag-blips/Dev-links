@@ -6,7 +6,8 @@ import HomePage from "./pages/home/HomePage.jsx";
 import PrivateRoute from "../routes/PrivateRoute.jsx";
 import PublicRoute from "../routes/PublicRoute.jsx";
 import Profile from "./pages/profile/Profile.jsx";
-import UpdateProfile from "./pages/update/UpdateProfile.jsx";
+
+import UpdatePage from "./pages/update/UpdatePage.jsx";
 
 function App() {
   const router = createBrowserRouter([
@@ -46,7 +47,7 @@ function App() {
       path: "/updateProfile",
       element: (
         <PrivateRoute>
-          <UpdateProfile />
+          <UpdatePage />
         </PrivateRoute>
       ),
       error: <ErrorPage />,
