@@ -5,13 +5,13 @@ import Mockup from "../../components/home/Mockup";
 
 const HomePage = () => {
   return (
-    <div classname="min-h-screen">
+    <div className="h-screen flex flex-col">
       <Navbar />
-      <div className="xl:flex  xl:items-start ">
-        <section className="xl:w-[38.89%] h-[100vh] hidden xl:block">
+      <div className="flex flex-grow xl:flex-row">
+        <section className="xl:w-[38.89%] min-h-[100%] hidden xl:block">
           <Mockup />
         </section>
-        <section className="xl:w-full xl:min-h-screen ">
+        <section className="xl:w-[61.11%] flex-grow">
           <Main />
         </section>
       </div>
