@@ -117,7 +117,7 @@ const ProfileLinks = ({ isProfile }) => {
   };
 
   return (
-    <section className=" md:bg-white md:w-[349px] md:mb-[80px] shadow-lg">
+    <section className=" md:bg-white md:w-[349px] w-full md:py-[48px] md:mt-[-180px] md:rounded-[24px] md:shadow-md">
       <div className="flex flex-col items-center gap-[24px]">
         {profileImage && (
           <img

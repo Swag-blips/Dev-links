@@ -59,16 +59,7 @@ const UpdateProfile = () => {
     }
   };
 
-  const handleUpload = async () => {
-    if (file) {
-      const downloadURL = await uploadImage();
-      if (downloadURL) {
-        await saveImageMetaData(downloadURL);
-      }
-    } else {
-      console.warn("No file selected for upload");
-    }
-  };
+
 
   const generatePreview = (file) => {
     const reader = new FileReader();
@@ -99,6 +90,16 @@ const UpdateProfile = () => {
           updatedData.email = email;
         }
 
+        if (file) {
+          const downloadURL = await uploadImage();
+          if (downloadURL) {
+            updatedData.profileImg = downloadURL;
+            await saveImageMetaData(downloadURL);
+          } else{
+            console.warn("no image selected")
+          }
+        }
+
         console.log("Updated Data:", updatedData);
 
         if (Object.keys(updatedData).length > 0) {
@@ -107,7 +108,6 @@ const UpdateProfile = () => {
             success: "Details successfully saved!",
             error: (err) => `${err.message}`,
           });
-          await handleUpload();
           console.log("Successfully saved:", updatedData);
         } else {
           toast.error("No changes to save", { icon: "ℹ️" });

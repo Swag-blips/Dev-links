@@ -130,8 +130,8 @@ const Main = () => {
   };
 
   return (
-    <main className="w-full p-[1px]">
-      <section className="bg-white mx-[16px] my-[16px] rounded-[12px] h-auto">
+    <main className="w-full p-[1px] min-h-screen ">
+      <section className="bg-white min-h-screen mx-[16px] my-[16px] rounded-[12px] ">
         <div className="flex flex-col pt-[24px] mx-[24px] p-[1px]">
           <h2 className="font-bold text-[24px] md:text-[32px] text-[#333333]">
             Customize your links

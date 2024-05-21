@@ -21,7 +21,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-white w-full md:w-auto h-[74px] md:h-[78px] p-[1px] md:mx-[16px] md:my-[24px] md:rounded-[12px]">
+    <nav className="bg-white w-full md:w-auto h-[74px] md:h-[78px] p-[1px] md:mx-[16px] sticky z-20 top-0 md:my-[24px] md:rounded-[12px]">
       <div className="flex items-center justify-between ml-[24px] mr-[16px] my-[16px]">
         <figure>
           <img src={logo} className="md:hidden" alt="devlinks logo" />

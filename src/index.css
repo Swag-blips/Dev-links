@@ -11,6 +11,7 @@ body {
 .full-page-loader {
   display: flex;
   justify-content: center;
+  z-index: 50;
   align-items: center;
   width: 100vw;
   height: 100vh;

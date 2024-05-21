@@ -14,7 +14,7 @@ const SignUp = () => {
         </div>
         <div className="mt-[64px] md:mt-[40px] ml-[32px] mr-[32px]">
           <div className="flex justify-center gap-[8px] flex-col">
-            <h2 className="font-bold text-[24px]">Create account</h2>
+            <h2 className="font-bold text-[24px] md:text-[32px]">Create account</h2>
             <p className="text-[16px] font-regular text-[#737373]">
               Let’s get you started sharing your links!
             </p>
