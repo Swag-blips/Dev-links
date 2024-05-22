@@ -49,7 +49,7 @@ const UpdateProfile = () => {
       await setDoc(
         docRef,
         {
-          profileImage: downloadURL,
+          profileImg: downloadURL,
         },
         { merge: true }
       );
@@ -131,7 +131,7 @@ const UpdateProfile = () => {
         setEmail(data.email);
         setFirstName(data.firstName);
         setLastName(data.lastName);
-        setPreviewUrl(data.profileImage);
+        setPreviewUrl(data.profileImg);
         setOriginalData(data);
         console.log("Fetched Data:", data);
       } else {
