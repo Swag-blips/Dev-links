@@ -1,5 +1,5 @@
 import React from "react";
-import phoneMockup from "../assets/images/illustration-phone-mockup.svg";
+import phoneMockup from "../assets/images/illustration-half-mockup.svg";
 import { useLocation } from "react-router-dom";
 
 const Mockup = () => {
