@@ -9,7 +9,9 @@ const Mockup = () => {
 
   return (
     <section
-      className={`bg-white rounded-[12px]  ${isUpdateProfile ? "pb-[24px]" : "pb-[39px]"}
+      className={`bg-white rounded-[12px]  ${
+        isUpdateProfile ? "pb-[24px]" : "pb-[39px]"
+      }
 mb-[20px] mt-[16px] overflow-hidden ml-[16px] relative flex items-center justify-center`}
     >
       <div className="relative mt-[100px]">
@@ -18,6 +20,15 @@ mb-[20px] mt-[16px] overflow-hidden ml-[16px] relative flex items-center justify
           <div className="flex flex-col items-center gap-[24px]">
             <div className="w-[96px] h-[96px] rounded-full bg-[#EEEEEE]" />
             <div className="bg-[#EEEEEE] w-[160px] h-[16px] rounded-[104px]" />
+          </div>
+          <div className="bg-[#EEEEEE] w-[72px] mt-[13px] h-[16px] rounded-[104px]" />
+
+          <div className="flex flex-col items-center gap-[20px] mt-[56px]">
+            <div className="bg-[#EEEEEE] w-[237px] h-[44px] rounded-[8px]" />
+            <div className="bg-[#EEEEEE] w-[237px] h-[44px] rounded-[8px]" />
+            <div className="bg-[#EEEEEE] w-[237px] h-[44px] rounded-[8px]" />
+            <div className="bg-[#EEEEEE] w-[237px] h-[44px] rounded-[8px]" />
+            <div className="bg-[#EEEEEE] w-[237px] h-[44px] rounded-[8px]" />
           </div>
         </div>
       </div>

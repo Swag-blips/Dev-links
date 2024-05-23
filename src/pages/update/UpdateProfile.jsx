@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-
+import copyLink from "../../assets/images/icon-link-copied-to-clipboard.svg";
 import { validateProfileDetails } from "../../../utils/Validation";
 import { UploadImage } from "../../assets/icons";
 import { storage, db } from "../../../firebase/config";
@@ -7,6 +7,7 @@ import { uploadBytes, getDownloadURL, ref } from "firebase/storage";
 import { setDoc, doc, getDoc } from "firebase/firestore";
 import toast from "react-hot-toast";
 import useAuth from "../../../firebase/AuthContext.jsx";
+import iconSave from "../../assets/images/icon-save.svg";
 
 const UpdateProfile = () => {
   const [firstName, setFirstName] = useState("");
@@ -101,12 +102,25 @@ const UpdateProfile = () => {
         console.log("Updated Data:", updatedData);
 
         if (Object.keys(updatedData).length > 0) {
-          await toast.promise(setDoc(docRef, updatedData, { merge: true }), {
-            loading: "Saving details...",
-            success: "Details successfully saved!",
-            error: (err) => `${err.message}`,
-          });
-          console.log("Successfully saved:", updatedData);
+          await setDoc(docRef, updatedData, { merge: true }),
+            toast(
+              <div className="flex items-center">
+                <img src={iconSave} alt="success" className="mr-[8px]" />
+                <p className="text-[14px]">
+                  Your changes have been successfully saved!
+                </p>
+              </div>,
+              {
+                duration: 4000,
+                style: {
+                  background: "#333333",
+                  color: "#ffffff",
+                  width: "397px",
+                  height: "56px",
+                },
+                position: "bottom-center",
+              }
+            );
         } else {
           toast.error("No changes to save", { icon: "ℹ️" });
         }
