@@ -91,7 +91,7 @@ const SelectLink = ({ index, link, updateLink, removeLink }) => {
 
   return (
     <div className="mx-[24px] mt-[20px] flex flex-col gap-[12px]">
-      <div className="flex justify-between">
+      <div className="flex justify-between mt-[20px]">
         <div className="flex items-center gap-[3px]">
           <div className="flex flex-col justify-center gap-[4px]">
             <span className="bg-[#737373] w-[12px] h-[1px]"></span>

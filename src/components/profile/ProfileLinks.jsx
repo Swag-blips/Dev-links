@@ -64,7 +64,7 @@ const ProfileLinks = ({ isProfile }) => {
     return <p>{error}</p>;
   }
 
-  const { firstName, lastName, email, profileImage } = profileData || {};
+  const { firstName, lastName, email, profileImg } = profileData || {};
 
   const renderLink = (link) => {
     const { platform, url } = link;
@@ -119,9 +119,9 @@ const ProfileLinks = ({ isProfile }) => {
   return (
     <section className=" md:bg-white md:w-[349px] w-full md:py-[48px] md:mt-[-180px] md:rounded-[24px] md:shadow-md">
       <div className="flex flex-col items-center gap-[24px]">
-        {profileImage && (
+        {profileImg && (
           <img
-            src={profileImage}
+            src={profileImg}
             alt="profile image"
             className="w-[104px] h-[104px] rounded-full object-cover border-[4px] border-[#633CFF]"
           />

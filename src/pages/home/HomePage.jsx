@@ -11,7 +11,7 @@ const HomePage = () => {
         <section className="xl:w-[38.89%] min-h-[100%] hidden xl:block">
           <Mockup />
         </section>
-        <section className="xl:w-[61.11%] flex-grow">
+        <section className="xl:w-[61.11%] flex-grow flex flex-col">
           <Main />
         </section>
       </div>

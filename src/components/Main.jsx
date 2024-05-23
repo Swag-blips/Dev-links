@@ -129,18 +129,18 @@ const Main = () => {
 
   return (
     <main className="w-full h-full flex flex-col p-[1px]">
-      <section className="bg-white flex-grow mx-[16px] my-[16px] rounded-[12px] flex flex-col justify-between">
+      <section className="bg-white flex-grow mx-[16px] my-[16px] rounded-[12px] flex flex-col justify-between overflow-y-auto">
         <div className="flex flex-col h-full">
           <div className="flex flex-col pt-[24px] mx-[24px] p-[1px]">
             <h2 className="font-bold text-[24px] md:text-[32px] text-[#333333]">
               Customize your links
             </h2>
-            <p className="text-[#737373] text-[16px] mt-[8px]">
+            <p className="text-[#3e2f2f] text-[16px] mt-[8px]">
               Add/edit/remove links below and then share all your profiles with
               the world!
             </p>
           </div>
-          <div className="flex flex-col flex-grow overflow-y-auto gap-[24px]">
+          <div className="flex flex-col flex-grow">
             <div className="flex flex-col pt-[40px] mx-[24px] p-[1px]">
               <button
                 onClick={addNewLink}
@@ -149,24 +149,27 @@ const Main = () => {
                 + Add a new link
               </button>
             </div>
-            {links.length > 0 ? (
-              links.map((link, index) => (
-                <div
-                  key={link.platform || index}
-                  className="mx-[24px] rounded-[12px] bg-[#FAFAFA] h-auto"
-                >
-                  <SelectLink
-                    index={index}
-                    link={link}
-                    updateLink={updateLink}
-                    removeLink={removeLink}
-                  />
-                </div>
-              ))
-            ) : (
+            {/* Render scrollable links only on xl screens and above */}
+            <div className="xl:flex-grow xl:overflow-y-auto xl:max-h-[400px]">
+              {links.length > 0 &&
+                links.map((link, index) => (
+                  <div
+                    key={link.platform || index}
+                    className="mx-[24px] rounded-[12px] bg-[#FAFAFA]"
+                  >
+                    <SelectLink
+                      index={index}
+                      link={link}
+                      updateLink={updateLink}
+                      removeLink={removeLink}
+                    />
+                  </div>
+                ))}
+            </div>
+            {links.length === 0 && (
               <div
                 key="default"
-                className="mx-[24px] rounded-[12px] bg-[#FAFAFA] h-auto"
+                className="mx-[24px] mt-[24px] pt-[46px] md:pt-[80px] rounded-[12px] bg-[#FAFAFA] h-auto"
               >
                 <EmptyLinks />
               </div>
@@ -177,7 +180,7 @@ const Main = () => {
           <div className="mx-[16px] my-[16px] w-full md:w-auto">
             <button
               onClick={handleSave}
-              className={`px-7 py-3 rounded-[8px] md:w-[91px]  ${
+              className={`px-7 py-3 rounded-[8px] md:w-[91px] ${
                 links.length ? "bg-[#633CFF]" : "opacity-[25%]"
               } w-full md:mr-[10px] text-white font-bold text-[12px]`}
             >

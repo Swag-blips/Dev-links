@@ -148,8 +148,8 @@ const UpdateProfile = () => {
 
   return (
     <section>
-      <main className="p-[1px] ">
-        <div className="my-[16px] xl:pb-[75px] xl:m mx-[16px] bg-[#fff] rounded-[8px]  flex flex-col justify-center">
+      <main className="p-[1px] md:mx-[16px] xl:mx-0 ">
+        <div className="my-[16px]  xl:mx-[16px] bg-[#fff] rounded-[8px]  flex flex-col justify-center">
           <div className="flex flex-col gap-[8px] mx-[24px] mt-[24px] xl:mt-[40px]">
             <h2 className="text-[24px] md:text-[32px] font-bold">
               Profile Details

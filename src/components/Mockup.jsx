@@ -9,19 +9,16 @@ const Mockup = () => {
 
   return (
     <section
-      className={`bg-white rounded-[12px] ${
-        isUpdateProfile ? "h-auto" : "min-h-[100%]"
-      } mb-[20px] mt-[16px] overflow-hidden ml-[16px]  `}
+      className={`bg-white rounded-[12px]  ${isUpdateProfile ? "pb-[24px]" : "pb-[39px]"}
+mb-[20px] mt-[16px] overflow-hidden ml-[16px] relative flex items-center justify-center`}
     >
-      <div className="flex items-center justify-center  relative my-[100px]">
+      <div className="relative mt-[100px]">
         <img src={phoneMockup} alt="phone-mockup" />
-      </div>
-
-      <div className=" skelteon-div flex flex-col items-center absolute mt-[130px] top-[11.0rem] left-[18.7rem]">
-        <div className="flex flex-col items gap-[24px]">
-          <div className="w-[96px] h-[96px] rounded-full bg-[#EEEEEE] ml-[30px]" />
-
-          <div className="bg-[#EEEEEE] w-[160px] h-[16px] rounded-[104px]" />
+        <div className="absolute inset-0 flex flex-col items-center mt-[70px]">
+          <div className="flex flex-col items-center gap-[24px]">
+            <div className="w-[96px] h-[96px] rounded-full bg-[#EEEEEE]" />
+            <div className="bg-[#EEEEEE] w-[160px] h-[16px] rounded-[104px]" />
+          </div>
         </div>
       </div>
     </section>

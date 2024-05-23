@@ -3,7 +3,7 @@ import emptyIllustration from "../../assets/images/illustration-empty.svg";
 
 const EmptyLinks = () => {
   return (
-    <div className="flex flex-col items-center my-[46px] mx-[24px] gap-[24px] md:gap-0">
+    <div className="flex flex-col items-center  mb-[60px] mx-[24px] gap-[24px] md:gap-0">
       <img
         src={emptyIllustration}
         alt="mobile img"

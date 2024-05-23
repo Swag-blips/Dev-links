@@ -8,10 +8,10 @@ const UpdatePage = () => {
     <div className="h-screen flex flex-col">
       <Navbar />
       <div className="flex flex-grow xl:flex-row">
-        <section className="xl:w-[38.89%] h-auto hidden xl:block">
+        <section className="xl:w-[38.89%] min-h-[100%] hidden xl:block">
           <Mockup />
         </section>
-        <section className="xl:w-[61.11%] flex-grow">
+        <section className="xl:w-[61.11%] min-h-[100%] flex-grow">
           <UpdateProfile />
         </section>
       </div>
