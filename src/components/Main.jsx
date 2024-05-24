@@ -12,14 +12,14 @@ import { db } from "../../firebase/config.jsx";
 import useAuth from "../../firebase/AuthContext.jsx";
 import { toast } from "react-hot-toast";
 import validateUrl from "../../utils/Validation.jsx";
-import { v4 as uuidv4 } from "uuid"; // Add this line
+import { v4 as uuidv4 } from "uuid";
 
 const Main = () => {
   const [links, setLinks] = useState([]);
   const { currentUser } = useAuth();
 
   const addNewLink = () => {
-    setLinks([...links, { id: uuidv4(), platform: null, url: "", error: "" }]); // Add unique ID
+    setLinks([...links, { id: uuidv4(), platform: null, url: "", error: "" }]);
   };
 
   const removeLink = async (index) => {
@@ -58,11 +58,11 @@ const Main = () => {
       const snapshot = await getDocs(profileLinksCollectionRef);
 
       const fetchedLinks = snapshot.docs.map((doc) => ({
-        id: doc.id, // Use document ID
+        id: doc.id,
         platform: doc.id,
         url: doc.data().url,
         error: "",
-        saved: true, // Mark as saved
+        saved: true,
       }));
 
       setLinks(fetchedLinks);
@@ -117,7 +117,7 @@ const Main = () => {
                   { url: link.url, platform: link.platform },
                   { merge: true }
                 );
-                link.saved = true; // Mark as saved after successful save
+                link.saved = true;
               }
             })
           ),
@@ -153,12 +153,11 @@ const Main = () => {
             <div className="flex flex-col pt-[40px] mx-[24px] p-[1px]">
               <button
                 onClick={addNewLink}
-                className="border border-[#633CFF] text-[16px] text-[#633CFF] rounded-[8px] px-7 py-3"
+                className="border border-[#633CFF] hover:bg-[#EFEBFF] text-[16px] text-[#633CFF] rounded-[8px] px-7 py-3"
               >
                 + Add a new link
               </button>
             </div>
-            {/* Render scrollable links only on xl screens and above */}
             <div className="xl:flex-grow xl:overflow-y-auto xl:max-h-[400px]">
               {links.length > 0 &&
                 links.map((link, index) => (
@@ -189,9 +188,10 @@ const Main = () => {
           <div className="mx-[16px] my-[16px] w-full md:w-auto">
             <button
               onClick={handleSave}
-              className={`px-7 py-3 rounded-[8px] md:w-[91px] ${
-                links.length ? "bg-[#633CFF]" : "opacity-[25%]"
-              } w-full md:mr-[10px] text-white font-bold text-[12px]`}
+              disabled={links.length === 0}
+              className={`px-7 py-3 rounded-[8px] md:w-[91px] cursor-pointer w-full md:mr-[10px] text-white font-bold text-[12px] ${
+                links.length === 0 ? "opacity-50 bg-[#633CFF]" : "bg-[#633CFF]"
+              }`}
             >
               Save
             </button>

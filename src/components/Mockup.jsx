@@ -2,9 +2,24 @@ import React, { useState, useEffect } from "react";
 import phoneMockup from "../assets/images/half-mockup.svg";
 import { useLocation } from "react-router-dom";
 import { db } from "../../firebase/config";
-import { doc, getDoc } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, query } from "firebase/firestore";
 import useAuth from "../../firebase/AuthContext";
 import { InitialsMockup } from "../../helpers/InitialsMockup";
+import {
+  Facebook,
+  FrontendMentor,
+  Github,
+  LinkedIn,
+  Twitch,
+  Twitter,
+  Youtube,
+  Dev,
+  Codepen,
+  Codewars,
+  FreeCodeCamp,
+  Gitlab,
+} from "../assets/icons";
+
 const Mockup = () => {
   const location = useLocation();
   const [firstName, setFirstName] = useState("");
@@ -12,6 +27,7 @@ const Mockup = () => {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [profileImg, setProfileImg] = useState("");
+  const [linksData, setLinksData] = useState([]);
   const { currentUser } = useAuth();
 
   const isUpdateProfile = location.pathname === "/updateProfile";
@@ -36,8 +52,96 @@ const Mockup = () => {
     }
   };
 
+  const fetchLinks = async () => {
+    const q = query(collection(db, `Profile/${currentUser.uid}/ProfileLinks`));
+    const querySnapshot = await getDocs(q);
+
+    const links = [];
+
+    querySnapshot.forEach((doc) => {
+      links.push({ id: doc.id, ...doc.data() });
+    });
+
+    setLinksData(links);
+
+    console.log(linksData);
+  };
+
+  const renderLink = (link) => {
+    let { platform, url } = link;
+    let BgComponent, IconComponent, label, border;
+
+    switch (platform) {
+      case "Github":
+        bgColor = "bg-[#1A1A1A]";
+        IconComponent = Github;
+        label = "GitHub";
+        break;
+      case "Youtube":
+        bgColor = "bg-[#EE3939]";
+        IconComponent = Youtube;
+        label = "Youtube";
+        break;
+      case "LinkedIn":
+        bgColor = "bg-[#2D68FF]";
+        IconComponent = LinkedIn;
+        label = "LinkedIn";
+        break;
+      case "Twitch":
+        bgColor = "bg-fuchsia-500";
+        IconComponent = Twitch;
+        label = "Twitch";
+        break;
+      case "Twitter":
+        bgColor = "bg-[#43B7E9]";
+        IconComponent = Twitter;
+        label = "Twitter";
+        break;
+      case "Frontend mentor":
+        bgColor = "bg-[#FFFFFF]";
+        IconComponent = FrontendMentor;
+        label = "Frontend mentor";
+        border = "border-[#D9D9D9]";
+        break;
+      case "Dev.to":
+        bgColor = "bg-[#333333]";
+        IconComponent = Dev;
+        label = "Dev.to";
+        break;
+      case "Facebook":
+        bgColor = "bg-[#2442AC]";
+        IconComponent = Facebook;
+        label = "Facebook";
+        break;
+      case "Codepen":
+        bgColor = "bg-[#8A1A50]";
+        IconComponent = Codepen;
+        label = "Codepen";
+        break;
+      case "Codewars":
+        bgColor = "bg-[#8A1A50]";
+        IconComponent = Codewars;
+        label = "Codewars";
+        break;
+      case "freeCodeCamp":
+        bgColor = "bg-[#302267]";
+        IconComponent = FreeCodeCamp;
+        label = "freeCodeCamp";
+        break;
+      case "Gitlab":
+        bgColor = "bg-[#EB4925]";
+        IconComponent = Gitlab;
+        label = "Gitlab";
+        break;
+
+      default:
+        return null;
+    }
+  };
+
   useEffect(() => {
     fetchDetails();
+    fetchLinks();
   }, []);
 
   return (

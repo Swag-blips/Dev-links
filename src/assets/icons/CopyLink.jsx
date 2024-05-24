@@ -1,4 +1,4 @@
-export const Link = ({ color, width, height }) => {
+export const CopyLink = ({ color, width, height }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

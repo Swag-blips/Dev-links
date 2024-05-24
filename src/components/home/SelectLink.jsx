@@ -18,21 +18,21 @@ import iconLink from "../../assets/images/icon-link.svg";
 import Select from "react-select";
 
 const options = [
-  { value: "Github", label: "Github", icon: iconGithub },
+  { value: "Github✅", label: "Github", icon: iconGithub },
   {
-    value: "Frontend mentor",
+    value: "Frontend mentor✅",
     label: "Frontend mentor",
     icon: iconFrontendMentor,
   },
-  { value: "Twitter", label: "Twitter", icon: iconTwitter },
-  { value: "LinkedIn", label: "LinkedIn", icon: iconLinkedIn },
-  { value: "Youtube", label: "Youtube", icon: iconYoutube },
-  { value: "Facebook", label: "Facebook", icon: iconFacebook },
-  { value: "Twitch", label: "Twitch", icon: iconTwitch },
-  { value: "Dev.to", label: "Dev.to", icon: iconDevto },
-  { value: "Codewars", label: "Codewars", icon: iconCodeWars },
-  { value: "Codepen", label: "Codepen", icon: iconCodePen },
-  { value: "freeCodeCamp", label: "freeCodeCamp", icon: iconFreeCodeCamp },
+  { value: "Twitter✅", label: "Twitter", icon: iconTwitter },
+  { value: "LinkedIn✅", label: "LinkedIn", icon: iconLinkedIn },
+  { value: "Youtube✅", label: "Youtube", icon: iconYoutube },
+  { value: "Facebook✅", label: "Facebook", icon: iconFacebook },
+  { value: "Twitch✅", label: "Twitch", icon: iconTwitch },
+  { value: "Dev.to✅", label: "Dev.to", icon: iconDevto },
+  { value: "Codewars✅", label: "Codewars", icon: iconCodeWars },
+  { value: "Codepen✅", label: "Codepen", icon: iconCodePen },
+  { value: "freeCodeCamp✅", label: "freeCodeCamp", icon: iconFreeCodeCamp },
   { value: "Gitlab", label: "Gitlab", icon: iconGitLab },
   { value: "Stack overflow", label: "Stack overflow", icon: iconStackOverflow },
   { value: "Hashnode", label: "Hashnode", icon: iconHashNode },
@@ -65,6 +65,7 @@ const customStyles = {
     borderWidth: state.isFocused ? "1px" : provided.borderWidth,
     padding: "6px 12px",
     borderRadius: "8px",
+    cursor: "pointer",
   }),
   option: (provided, { isSelected, isFocused }) => ({
     ...provided,
@@ -86,7 +87,7 @@ const SelectLink = ({ index, link, updateLink, removeLink }) => {
   const inputStyle = (error) => {
     return `border ${
       error ? "border-[#FF3939]" : "border-[#D9D9D9]"
-    } px-4 outline-none py-3 rounded-[8px] pl-[40px] pr-[40px] w-full focus-within:border-[#633CFF] mb-[20px] focus:border-[1px] focus:shadow-[0_0_8px_2px_rgba(99,60,255,0.6)]`;
+    } px-4 outline-none py-3 rounded-[8px] pl-[40px] pr-[40px] cursor-pointer w-full focus-within:border-[#633CFF] mb-[20px] focus:border-[1px] focus:shadow-[0_0_8px_2px_rgba(99,60,255,0.6)]`;
   };
 
   return (

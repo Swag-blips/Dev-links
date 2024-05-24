@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import logo from "../assets/images/logo-devlinks-small.svg";
 import logoMd from "../assets/images/logo-devlinks-large.svg";
-import link from "../assets/images/link-bold.svg";
+
 import user from "../assets/images/icon-user.svg";
 import eye from "../assets/images/icon-eye.svg";
 import { Link, useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { Person, CopyLink } from "../assets/icons/index";
 import useAuth from "../../firebase/AuthContext";
 
 const Navbar = () => {
@@ -38,7 +39,11 @@ const Navbar = () => {
                 isActiveLink ? "bg-[#EFEBFF] rounded-[8px]" : ""
               }`}
             >
-              <img src={link} alt="dev link" />
+              <CopyLink
+                height="24"
+                width="24"
+                color={isActiveLink ? "#633CFF" : "#737373"}
+              />
               <p
                 className={`hidden md:flex ${
                   isActiveLink ? "text-[#633CFF] font-semibold" : ""
@@ -54,7 +59,11 @@ const Navbar = () => {
                 isActiveUser ? "bg-[#EFEBFF] rounded-[8px] " : ""
               }`}
             >
-              <img src={user} alt="user" />
+              <Person
+                height="24"
+                width="24"
+                color={isActiveUser ? "#633CFF" : "#737373"}
+              />
               <p
                 className={`hidden font- md:flex ${
                   isActiveUser ? "text-[#633CFF] font-semibold" : ""
@@ -67,7 +76,7 @@ const Navbar = () => {
         </div>
         <figure
           onClick={navigateProfile}
-          className="border border-[#633CFF] px-4 py-3 rounded-[8px]"
+          className="border border-[#633CFF] cursor-pointer px-4 py-3 rounded-[8px]"
         >
           <img src={eye} className="md:hidden" />
           <p className="hidden md:flex text-[16px] font-semibold text-[#633CFF]">
