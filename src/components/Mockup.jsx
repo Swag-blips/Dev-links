@@ -43,7 +43,7 @@ const Mockup = () => {
   return (
     <section
       className={`bg-white rounded-[12px] ${
-        isUpdateProfile ? "pb-[24px]" : "pb-[39px]"
+        isUpdateProfile ? "pb-[24px]" : "pb-[69px]"
       } mb-[20px] mt-[16px] overflow-hidden ml-[16px] relative flex items-center justify-center`}
     >
       <div className="relative mt-[100px]">
@@ -63,9 +63,7 @@ const Mockup = () => {
             )}
             {firstName ? (
               <div className="text-center">
-                <h1 className="text-[24px] font-bold">
-                  {firstName} 
-                </h1>
+                <h1 className="text-[24px] font-bold">{firstName}</h1>
               </div>
             ) : (
               <div className="bg-[#EEEEEE] w-[160px] h-[16px] rounded-[104px]" />

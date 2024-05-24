@@ -6,7 +6,7 @@ export function getErrorMessage(error) {
   } else if (error.code === "auth/invalid-email") {
     return "Invalid email";
   } else if (error.code === "auth/invalid-credential") {
-    return "Invalid Email or password";
+    return "Invalid email or password";
   } else {
     // Log for debugging
     console.log("Unhandled error:", error);

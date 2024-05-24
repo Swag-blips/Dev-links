@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import iconGithub from "../../assets/images/icon-github.svg";
 import iconFrontendMentor from "../../assets/images/icon-frontend-mentor.svg";
 import iconStackOverflow from "../../assets/images/icon-stack-overflow.svg";
@@ -14,7 +14,7 @@ import iconDevto from "../../assets/images/icon-devto.svg";
 import iconCodeWars from "../../assets/images/icon-codewars.svg";
 import iconCodePen from "../../assets/images/icon-codepen.svg";
 import iconLink from "../../assets/images/icon-link.svg";
-import useAuth from "../../../firebase/AuthContext.jsx";
+
 import Select from "react-select";
 
 const options = [

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import EmptyLinks from "./home/EmptyLinks";
 import SelectLink from "./home/SelectLink";
 import {
@@ -13,14 +12,14 @@ import { db } from "../../firebase/config.jsx";
 import useAuth from "../../firebase/AuthContext.jsx";
 import { toast } from "react-hot-toast";
 import validateUrl from "../../utils/Validation.jsx";
-import { v4 as uuidv4 } from "uuid";
+import { v4 as uuidv4 } from "uuid"; // Add this line
 
 const Main = () => {
   const [links, setLinks] = useState([]);
   const { currentUser } = useAuth();
 
   const addNewLink = () => {
-    setLinks([...links, { id: uuidv4(), platform: null, url: "", error: "" }]);
+    setLinks([...links, { id: uuidv4(), platform: null, url: "", error: "" }]); // Add unique ID
   };
 
   const removeLink = async (index) => {
@@ -59,11 +58,11 @@ const Main = () => {
       const snapshot = await getDocs(profileLinksCollectionRef);
 
       const fetchedLinks = snapshot.docs.map((doc) => ({
-        id: doc.id,
+        id: doc.id, // Use document ID
         platform: doc.id,
         url: doc.data().url,
         error: "",
-        saved: true,
+        saved: true, // Mark as saved
       }));
 
       setLinks(fetchedLinks);
@@ -118,7 +117,7 @@ const Main = () => {
                   { url: link.url, platform: link.platform },
                   { merge: true }
                 );
-                link.saved = true;
+                link.saved = true; // Mark as saved after successful save
               }
             })
           ),
@@ -135,16 +134,6 @@ const Main = () => {
     } else {
       console.log("There are validation errors. Fix them before saving.");
     }
-  };
-
-  const onDragEnd = (result) => {
-    if (!result.destination) return;
-
-    const updatedLinks = Array.from(links);
-    const [movedLink] = updatedLinks.splice(result.source.index, 1);
-    updatedLinks.splice(result.destination.index, 0, movedLink);
-
-    setLinks(updatedLinks);
   };
 
   return (
@@ -169,44 +158,23 @@ const Main = () => {
                 + Add a new link
               </button>
             </div>
-            <DragDropContext onDragEnd={onDragEnd}>
-              <Droppable droppableId="droppable-1">
-                {(provided) => (
+            {/* Render scrollable links only on xl screens and above */}
+            <div className="xl:flex-grow xl:overflow-y-auto xl:max-h-[400px]">
+              {links.length > 0 &&
+                links.map((link, index) => (
                   <div
-                    {...provided.droppableProps}
-                    ref={provided.innerRef}
-                    className="xl:flex-grow xl:overflow-y-auto xl:max-h-[400px]"
+                    key={link.id}
+                    className="mx-[24px] rounded-[12px] bg-[#FAFAFA]"
                   >
-                    {links.length > 0 &&
-                      links.map((link, index) => (
-                        <Draggable
-                          key={link.id}
-                          draggableId={link.id}
-                          index={index}
-                        >
-                          {(provided) => (
-                            <div
-                              ref={provided.innerRef}
-                              {...provided.draggableProps}
-                              {...provided.dragHandleProps}
-                              className="mx-[24px] rounded-[12px] bg-[#FAFAFA]"
-                            >
-                              <SelectLink
-                                index={index}
-                                link={link}
-                                updateLink={updateLink}
-                                removeLink={removeLink}
-                                provided={provided}
-                              />
-                            </div>
-                          )}
-                        </Draggable>
-                      ))}
-                    {provided.placeholder}
+                    <SelectLink
+                      index={index}
+                      link={link}
+                      updateLink={updateLink}
+                      removeLink={removeLink}
+                    />
                   </div>
-                )}
-              </Droppable>
-            </DragDropContext>
+                ))}
+            </div>
             {links.length === 0 && (
               <div
                 key="default"

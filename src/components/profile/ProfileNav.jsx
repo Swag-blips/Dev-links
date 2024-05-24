@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import copyLink from "../../assets/images/icon-link-copied-to-clipboard.svg";
 
+
 const ProfileNav = () => {
   const navigate = useNavigate();
   const backToEditor = () => {
