@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import EmptyLinks from "./home/EmptyLinks";
 import SelectLink from "./home/SelectLink";
 import {
@@ -12,13 +13,14 @@ import { db } from "../../firebase/config.jsx";
 import useAuth from "../../firebase/AuthContext.jsx";
 import { toast } from "react-hot-toast";
 import validateUrl from "../../utils/Validation.jsx";
+import { v4 as uuidv4 } from "uuid";
 
 const Main = () => {
   const [links, setLinks] = useState([]);
   const { currentUser } = useAuth();
 
   const addNewLink = () => {
-    setLinks([...links, { platform: null, url: "", error: "" }]);
+    setLinks([...links, { id: uuidv4(), platform: null, url: "", error: "" }]);
   };
 
   const removeLink = async (index) => {
@@ -26,19 +28,24 @@ const Main = () => {
     const updatedLinks = links.filter((_, i) => i !== index);
     setLinks(updatedLinks);
 
-    try {
-      const profileDocRef = doc(db, "Profile", currentUser.uid);
-      const profileLinksCollectionRef = collection(
-        profileDocRef,
-        "ProfileLinks"
-      );
-      const linkDocRef = doc(profileLinksCollectionRef, linkToRemove.platform);
+    if (linkToRemove.saved) {
+      try {
+        const profileDocRef = doc(db, "Profile", currentUser.uid);
+        const profileLinksCollectionRef = collection(
+          profileDocRef,
+          "ProfileLinks"
+        );
+        const linkDocRef = doc(
+          profileLinksCollectionRef,
+          linkToRemove.platform
+        );
 
-      await deleteDoc(linkDocRef);
-      toast.success("Link deleted successfully!");
-    } catch (err) {
-      console.error("Error deleting link: ", err);
-      toast.error("Error deleting link.");
+        await deleteDoc(linkDocRef);
+        toast.success("Link deleted successfully!");
+      } catch (err) {
+        console.error("Error deleting link: ", err);
+        toast.error("Error deleting link.");
+      }
     }
   };
 
@@ -52,9 +59,11 @@ const Main = () => {
       const snapshot = await getDocs(profileLinksCollectionRef);
 
       const fetchedLinks = snapshot.docs.map((doc) => ({
+        id: doc.id,
         platform: doc.id,
         url: doc.data().url,
         error: "",
+        saved: true,
       }));
 
       setLinks(fetchedLinks);
@@ -109,6 +118,7 @@ const Main = () => {
                   { url: link.url, platform: link.platform },
                   { merge: true }
                 );
+                link.saved = true;
               }
             })
           ),
@@ -125,6 +135,16 @@ const Main = () => {
     } else {
       console.log("There are validation errors. Fix them before saving.");
     }
+  };
+
+  const onDragEnd = (result) => {
+    if (!result.destination) return;
+
+    const updatedLinks = Array.from(links);
+    const [movedLink] = updatedLinks.splice(result.source.index, 1);
+    updatedLinks.splice(result.destination.index, 0, movedLink);
+
+    setLinks(updatedLinks);
   };
 
   return (
@@ -149,23 +169,44 @@ const Main = () => {
                 + Add a new link
               </button>
             </div>
-            {/* Render scrollable links only on xl screens and above */}
-            <div className="xl:flex-grow xl:overflow-y-auto xl:max-h-[400px]">
-              {links.length > 0 &&
-                links.map((link, index) => (
+            <DragDropContext onDragEnd={onDragEnd}>
+              <Droppable droppableId="droppable-1">
+                {(provided) => (
                   <div
-                    key={link.platform || index}
-                    className="mx-[24px] rounded-[12px] bg-[#FAFAFA]"
+                    {...provided.droppableProps}
+                    ref={provided.innerRef}
+                    className="xl:flex-grow xl:overflow-y-auto xl:max-h-[400px]"
                   >
-                    <SelectLink
-                      index={index}
-                      link={link}
-                      updateLink={updateLink}
-                      removeLink={removeLink}
-                    />
+                    {links.length > 0 &&
+                      links.map((link, index) => (
+                        <Draggable
+                          key={link.id}
+                          draggableId={link.id}
+                          index={index}
+                        >
+                          {(provided) => (
+                            <div
+                              ref={provided.innerRef}
+                              {...provided.draggableProps}
+                              {...provided.dragHandleProps}
+                              className="mx-[24px] rounded-[12px] bg-[#FAFAFA]"
+                            >
+                              <SelectLink
+                                index={index}
+                                link={link}
+                                updateLink={updateLink}
+                                removeLink={removeLink}
+                                provided={provided}
+                              />
+                            </div>
+                          )}
+                        </Draggable>
+                      ))}
+                    {provided.placeholder}
                   </div>
-                ))}
-            </div>
+                )}
+              </Droppable>
+            </DragDropContext>
             {links.length === 0 && (
               <div
                 key="default"

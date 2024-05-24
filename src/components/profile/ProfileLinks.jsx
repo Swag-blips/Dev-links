@@ -51,9 +51,13 @@ const ProfileLinks = ({ isProfile }) => {
     }
   };
 
+  const { firstName, lastName, email, profileImg } = profileData || {};
+
+  
   useEffect(() => {
     fetchDetails();
     fetchLinks();
+ 
   }, [id]);
 
   if (loading) {
@@ -63,8 +67,6 @@ const ProfileLinks = ({ isProfile }) => {
   if (error) {
     return <p>{error}</p>;
   }
-
-  const { firstName, lastName, email, profileImg } = profileData || {};
 
   const renderLink = (link) => {
     const { platform, url } = link;

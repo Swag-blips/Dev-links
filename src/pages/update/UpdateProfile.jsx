@@ -147,7 +147,6 @@ const UpdateProfile = () => {
         setLastName(data.lastName);
         setPreviewUrl(data.profileImg);
         setOriginalData(data);
-        console.log("Fetched Data:", data);
       } else {
         console.log("No such document!");
       }
@@ -158,7 +157,10 @@ const UpdateProfile = () => {
 
   useEffect(() => {
     fetchDetails();
+
   }, []);
+
+
 
   return (
     <section>

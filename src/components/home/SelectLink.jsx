@@ -15,7 +15,6 @@ import iconCodeWars from "../../assets/images/icon-codewars.svg";
 import iconCodePen from "../../assets/images/icon-codepen.svg";
 import iconLink from "../../assets/images/icon-link.svg";
 import useAuth from "../../../firebase/AuthContext.jsx";
-
 import Select from "react-select";
 
 const options = [
@@ -42,7 +41,7 @@ const options = [
 const formatOptionLabel = ({ label, icon }, { context }) => {
   if (context === "menu") {
     return (
-      <div className="flex items-center gap-[12px]  w-full">
+      <div className="flex items-center gap-[12px] w-full">
         {icon && <img src={icon} alt={`${label} icon`} className="pb-[10px]" />}
         <div className="w-full border-b border-gray-300 pb-[10px]">
           <div>{label}</div>
@@ -73,6 +72,7 @@ const customStyles = {
     color: isSelected ? "white" : provided.color,
   }),
 };
+
 const SelectLink = ({ index, link, updateLink, removeLink }) => {
   const handleLinkChange = (e) => {
     const newLink = e.target.value;
@@ -86,7 +86,7 @@ const SelectLink = ({ index, link, updateLink, removeLink }) => {
   const inputStyle = (error) => {
     return `border ${
       error ? "border-[#FF3939]" : "border-[#D9D9D9]"
-    } px-4 outline-none py-3 rounded-[8px] pl-[40px] pr-[100px] w-full focus-within:border-[#633CFF] mb-[20px] focus:border-[1px] focus:shadow-[0_0_8px_2px_rgba(99,60,255,0.6)]`;
+    } px-4 outline-none py-3 rounded-[8px] pl-[40px] pr-[40px] w-full focus-within:border-[#633CFF] mb-[20px] focus:border-[1px] focus:shadow-[0_0_8px_2px_rgba(99,60,255,0.6)]`;
   };
 
   return (
@@ -103,7 +103,7 @@ const SelectLink = ({ index, link, updateLink, removeLink }) => {
         </div>
         <p
           onClick={() => removeLink(index)}
-          className="text-[#737373] text-[16px]"
+          className="text-[#737373] text-[16px] cursor-pointer"
         >
           Remove
         </p>
@@ -124,7 +124,7 @@ const SelectLink = ({ index, link, updateLink, removeLink }) => {
             styles={customStyles}
           />
         </div>
-        <div className="flex flex-col gap-[4px]">
+        <div className="flex flex-col gap-[4px] relative">
           <label htmlFor="link" className="text-[12px] text-[#333333]">
             Link
           </label>
@@ -141,12 +141,14 @@ const SelectLink = ({ index, link, updateLink, removeLink }) => {
             <img
               src={iconLink}
               alt="Link Icon"
-              className="absolute left-[14px] top-[40%] translate-y-[-50%] w-[20px] h-[20px]"
+              className="absolute left-[14px] top-[50%] translate-y-[-90%] w-[20px] h-[20px]"
             />
+            {link.error && (
+              <p className="absolute right-[14px] hidden md:block top-[50%] translate-y-[-90%] text-red-500 text-[12px]">
+                {link.error}
+              </p>
+            )}
           </div>
-          {link.error && (
-            <p className="text-red-500 text-[12px] mb-[16px]">{link.error}</p>
-          )}
         </div>
       </form>
     </div>

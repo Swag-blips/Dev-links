@@ -12,11 +12,13 @@
   "dependencies": {
     "firebase": "^10.11.1",
     "react": "^18.2.0",
+    "react-beautiful-dnd": "^13.1.1",
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.1",
     "react-router-dom": "^6.23.0",
     "react-select": "^5.8.0",
-    "swr": "^2.2.5"
+    "swr": "^2.2.5",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
