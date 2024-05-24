@@ -4,7 +4,23 @@ import { db } from "../../../firebase/config";
 import { doc, getDocs, getDoc, collection, query } from "firebase/firestore";
 import useAuth from "../../../firebase/AuthContext";
 import Spinner from "../../../helpers/Spinner";
-import { Github, Youtube, LinkedIn, Twitch } from "../../../src/assets/icons";
+
+import {
+  Facebook,
+  FrontendMentor,
+  Github,
+  LinkedIn,
+  Twitch,
+  Twitter,
+  Youtube,
+  Dev,
+  Codepen,
+  Codewars,
+  FreeCodeCamp,
+  Gitlab,
+  Stack,
+  Hashnode,
+} from "../../../src/assets/icons";
 import arrowRight from "../../../src/assets/images/icon-arrow-right.svg";
 
 const ProfileLinks = ({ isProfile }) => {
@@ -53,11 +69,9 @@ const ProfileLinks = ({ isProfile }) => {
 
   const { firstName, lastName, email, profileImg } = profileData || {};
 
-  
   useEffect(() => {
     fetchDetails();
     fetchLinks();
- 
   }, [id]);
 
   if (loading) {
@@ -69,8 +83,8 @@ const ProfileLinks = ({ isProfile }) => {
   }
 
   const renderLink = (link) => {
-    const { platform, url } = link;
-    let bgColor, IconComponent, label;
+    let { platform, url } = link;
+    let bgColor, IconComponent, label, border;
 
     switch (platform) {
       case "Github":
@@ -93,10 +107,61 @@ const ProfileLinks = ({ isProfile }) => {
         IconComponent = Twitch;
         label = "Twitch";
         break;
+      case "Twitter":
+        bgColor = "bg-[#43B7E9]";
+        IconComponent = Twitter;
+        label = "Twitter";
+        break;
+      case "Frontend mentor":
+        bgColor = "bg-[#FFFFFF]";
+        IconComponent = FrontendMentor;
+        label = "Frontend mentor";
+        border = "border-[#D9D9D9]";
+        break;
+      case "Dev.to":
+        bgColor = "bg-[#333333]";
+        IconComponent = Dev;
+        label = "Dev.to";
+        break;
+      case "Facebook":
+        bgColor = "bg-[#2442AC]";
+        IconComponent = Facebook;
+        label = "Facebook";
+        break;
+      case "Codepen":
+        bgColor = "bg-[#8A1A50]";
+        IconComponent = Codepen;
+        label = "Codepen";
+        break;
+      case "Codewars":
+        bgColor = "bg-[#8A1A50]";
+        IconComponent = Codewars;
+        label = "Codewars";
+        break;
+      case "freeCodeCamp":
+        bgColor = "bg-[#302267]";
+        IconComponent = FreeCodeCamp;
+        label = "freeCodeCamp";
+        break;
+      case "Gitlab":
+        bgColor = "bg-[#EB4925]";
+        IconComponent = Gitlab;
+        label = "Gitlab";
+        break;
+      case "Stack overflow":
+        bgColor = "bg-[#EC7100]";
+        IconComponent = Stack;
+        label = "Stack overflow";
+        break;
+      case "Hashnode":
+        bgColor = "bg-[#0330D1]";
+        IconComponent = Hashnode;
+        label = "Hashnode";
+        break;
+
       default:
         return null;
     }
-
     return (
       <div
         key={link.id}

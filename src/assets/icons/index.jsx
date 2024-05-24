@@ -13,16 +13,20 @@ import { Codepen } from "./Codepen";
 import { Codewars } from "./Codewars";
 import { FreeCodeCamp } from "./FreeCodeCamp";
 import { Gitlab } from "./Gitlab";
+import { Stack } from "./Stack";
+import { Hashnode } from "./Hashnode";
 
 export {
   Github,
   Youtube,
   LinkedIn,
   UploadImage,
+  Hashnode,
   Twitch,
   CopyLink,
   Person,
   Twitter,
+  Stack,
   FrontendMentor,
   Dev,
   FreeCodeCamp,
