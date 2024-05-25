@@ -5,6 +5,7 @@ import { db } from "../../firebase/config";
 import { collection, doc, getDoc, getDocs, query } from "firebase/firestore";
 import useAuth from "../../firebase/AuthContext";
 import { InitialsMockup } from "../../helpers/InitialsMockup";
+import arrowRight from "../assets/images/icon-arrow-right.svg";
 import {
   Facebook,
   FrontendMentor,
@@ -65,13 +66,11 @@ const Mockup = () => {
     });
 
     setLinksData(links);
-
-    console.log(linksData);
   };
 
   const renderLink = (link) => {
     let { platform, url } = link;
-    let BgComponent, IconComponent, label, border;
+    let bgColor, IconComponent, label, border;
 
     switch (platform) {
       case "Github":
@@ -170,7 +169,6 @@ const Mockup = () => {
     );
   };
 
-
   useEffect(() => {
     fetchDetails();
     fetchLinks();
@@ -213,11 +211,17 @@ const Mockup = () => {
             <div className="bg-[#EEEEEE] email w-[72px] mt-[13px] h-[16px] rounded-[104px]" />
           )}
           <div className="flex flex-col items-center gap-[20px] mt-[40px]">
-            <div className="bg-[#EEEEEE] w-[237px] h-[44px] rounded-[8px]" />
-            <div className="bg-[#EEEEEE] w-[237px] h-[44px] rounded-[8px]" />
-            <div className="bg-[#EEEEEE] w-[237px] h-[44px] rounded-[8px]" />
-            <div className="bg-[#EEEEEE] w-[237px] h-[44px] rounded-[8px]" />
-            <div className="bg-[#EEEEEE] w-[237px] h-[44px] rounded-[8px]" />
+            {linksData.length > 0 ? (
+              linksData.slice(0, 4).map((link) => renderLink(link))
+            ) : (
+              <>
+                <div className="bg-[#EEEEEE] w-[237px] h-[44px] rounded-[8px]" />
+                <div className="bg-[#EEEEEE] w-[237px] h-[44px] rounded-[8px]" />
+                <div className="bg-[#EEEEEE] w-[237px] h-[44px] rounded-[8px]" />
+                <div className="bg-[#EEEEEE] w-[237px] h-[44px] rounded-[8px]" />
+                <div className="bg-[#EEEEEE] w-[237px] h-[44px] rounded-[8px]" />
+              </>
+            )}
           </div>
         </div>
       </div>

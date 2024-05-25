@@ -165,7 +165,7 @@ const ProfileLinks = ({ isProfile }) => {
     return (
       <div
         key={link.id}
-        className={`flex items-center justify-between px-[16px] z-20 space-x-2 w-[237px] h-[56px] rounded-[8px] ${bgColor}`}
+        className={`flex items-center justify-between cursor-pointer px-[16px] z-20 space-x-2 w-[237px] h-[56px] rounded-[8px] ${bgColor}`}
       >
         <a
           href={url}
