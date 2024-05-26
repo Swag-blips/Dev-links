@@ -98,7 +98,7 @@ const SignupInput = () => {
             onChange={(e) => handleInputChange("email", e.target.value)}
           />
           {errors.email && (
-            <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#FF3939] text-xs">
+            <span className="absolute right-3 top-[55%] transform -translate-y-1/2 text-[#FF3939] text-xs">
               {errors.email}
             </span>
           )}
@@ -124,7 +124,7 @@ const SignupInput = () => {
             onChange={(e) => handleInputChange("password", e.target.value)}
           />
           {errors.password && (
-            <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#FF3939] text-xs">
+            <span className="absolute right-3 top-[55%] transform -translate-y-1/2 text-[#FF3939] text-xs">
               {errors.password}
             </span>
           )}
@@ -155,7 +155,7 @@ const SignupInput = () => {
             }
           />
           {errors.confirmPassword && (
-            <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#FF3939] text-xs">
+            <span className="absolute right-3 top-[55%] transform -translate-y-1/2 text-[#FF3939] text-xs">
               {errors.confirmPassword}
             </span>
           )}

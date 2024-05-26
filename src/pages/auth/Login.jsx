@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import logo from "../../assets/images/logo-devlinks-large.svg";
-
 import LoginInput from "../../components/auth/LoginInput";
 
 const Login = () => {
