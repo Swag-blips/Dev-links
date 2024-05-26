@@ -18,7 +18,7 @@ You can use any tools you like to help you complete the challenge. So if you've 
 
 Your users should be able to:
 
-- Create, read, update, delete links and see previews in the mobile mockup
+- Create, read, update, delete links and see previews in the mobile mockup ✅
 - Receive validations if the links form is submitted without a URL or with the wrong URL pattern for the platform ✅
 - Drag and drop links to reorder them
 - Add profile details like profile picture, first name, last name, and email✅

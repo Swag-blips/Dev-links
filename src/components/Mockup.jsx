@@ -215,11 +215,11 @@ const Mockup = () => {
               linksData.slice(0, 4).map((link) => renderLink(link))
             ) : (
               <>
-                <div className="bg-[#EEEEEE] w-[237px] h-[44px] rounded-[8px]" />
-                <div className="bg-[#EEEEEE] w-[237px] h-[44px] rounded-[8px]" />
-                <div className="bg-[#EEEEEE] w-[237px] h-[44px] rounded-[8px]" />
-                <div className="bg-[#EEEEEE] w-[237px] h-[44px] rounded-[8px]" />
-                <div className="bg-[#EEEEEE] w-[237px] h-[44px] rounded-[8px]" />
+                <div className="bg-[#EEEEEE] w-[237px] placeholder h-[44px] rounded-[8px]" />
+                <div className="bg-[#EEEEEE] w-[237px] placeholder h-[44px] rounded-[8px]" />
+                <div className="bg-[#EEEEEE] w-[237px] placeholder  h-[44px] rounded-[8px]" />
+                <div className="bg-[#EEEEEE] w-[237px] placeholder  h-[44px] rounded-[8px]" />
+                <div className="bg-[#EEEEEE] w-[237px] placeholder h-[44px] rounded-[8px]" />
               </>
             )}
           </div>

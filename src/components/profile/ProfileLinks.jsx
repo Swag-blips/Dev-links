@@ -22,6 +22,8 @@ import {
   Hashnode,
 } from "../../../src/assets/icons";
 import arrowRight from "../../../src/assets/images/icon-arrow-right.svg";
+import Offline from "../error/Offline";
+import NoProfile from "../error/NoProfile";
 
 const ProfileLinks = ({ isProfile }) => {
   const { id } = useParams();
@@ -42,8 +44,12 @@ const ProfileLinks = ({ isProfile }) => {
         setError("This page does not exist");
       }
     } catch (err) {
-      console.log(`An error occurred: ${err}`);
-      setError(`An error occurred: ${err.message}`);
+      if (err.message.includes("client is offline")) {
+        setError("offline");
+      } else {
+        console.log(`An error occurred: ${err}`);
+        setError(`An error occurred: ${err.message}`);
+      }
     } finally {
       setLoading(false);
     }
@@ -78,6 +84,11 @@ const ProfileLinks = ({ isProfile }) => {
     return <Spinner />;
   }
 
+  if (error === "offline") {
+    return <Offline />;
+  } else if ((error === "This page does not exist")) {
+    return <NoProfile />;
+  }
   if (error) {
     return <p>{error}</p>;
   }

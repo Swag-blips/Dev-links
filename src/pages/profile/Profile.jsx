@@ -11,10 +11,11 @@ const Profile = () => {
 
   const isProfile = currentUser && currentUser.uid === id;
 
-
   return (
     <section className="p-[1px] bg-[#fff] min-h-[100vh]">
-      {isProfile && <ProfileNav isProfile={isProfile} />}
+      <div className="md:w-full  md:bg-[#633CFF] md:h-[357px] p-[1px] md:rounded-b-[20px]">
+        {isProfile && <ProfileNav isProfile={isProfile} />}
+      </div>
       <main className="flex flex-col items-center justify-center mt-[60px]">
         <ProfileLinks isProfile={isProfile} />
       </main>

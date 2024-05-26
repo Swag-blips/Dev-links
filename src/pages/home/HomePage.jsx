@@ -3,7 +3,6 @@ import Navbar from "../../components/Navbar";
 import Main from "../../components/Main";
 import Mockup from "../../components/Mockup";
 
-
 const HomePage = () => {
   return (
     <div className="h-screen flex flex-col">
@@ -14,7 +13,6 @@ const HomePage = () => {
         </section>
         <section className="xl:w-[61.11%] flex-grow flex flex-col">
           <Main />
-   
         </section>
       </div>
     </div>
