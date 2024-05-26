@@ -19,7 +19,10 @@ const Main = () => {
   const { currentUser } = useAuth();
 
   const addNewLink = () => {
-    setLinks([...links, { id: uuidv4(), platform: null, url: "", error: "" }]);
+    setLinks([
+      ...links,
+      { id: uuidv4(), platform: "Github", url: "", error: "" }, // Default platform set to Github
+    ]);
   };
 
   const removeLink = async (index) => {
