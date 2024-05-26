@@ -21,7 +21,7 @@ const Main = () => {
   const addNewLink = () => {
     setLinks([
       ...links,
-      { id: uuidv4(), platform: "Github", url: "", error: "" }, // Default platform set to Github
+      { id: uuidv4(), platform: "Github", url: "", error: "" }, 
     ]);
   };
 
