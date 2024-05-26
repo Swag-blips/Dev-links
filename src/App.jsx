@@ -6,8 +6,8 @@ import HomePage from "./pages/home/HomePage.jsx";
 import PrivateRoute from "../routes/PrivateRoute.jsx";
 import PublicRoute from "../routes/PublicRoute.jsx";
 import Profile from "./pages/profile/Profile.jsx";
-
 import UpdatePage from "./pages/update/UpdatePage.jsx";
+import NotFound from "./pages/NotFound.jsx";
 
 function App() {
   const router = createBrowserRouter([
@@ -18,7 +18,7 @@ function App() {
           <Login />
         </PublicRoute>
       ),
-      error: <ErrorPage />,
+      errorElement: <ErrorPage />,
     },
     {
       path: "/signup",
@@ -27,7 +27,7 @@ function App() {
           <SignUp />
         </PublicRoute>
       ),
-      error: <ErrorPage />,
+      errorElement: <ErrorPage />,
     },
     {
       path: "/",
@@ -36,12 +36,12 @@ function App() {
           <HomePage />
         </PrivateRoute>
       ),
-      error: <ErrorPage />,
+      errorElement: <ErrorPage />,
     },
     {
       path: "/profile/:id",
       element: <Profile />,
-      error: <ErrorPage />,
+      errorElement: <ErrorPage />,
     },
     {
       path: "/updateProfile",
@@ -50,7 +50,11 @@ function App() {
           <UpdatePage />
         </PrivateRoute>
       ),
-      error: <ErrorPage />,
+      errorElement: <ErrorPage />,
+    },
+    {
+      path: "*", // Catch-all route
+      element: <NotFound />,
     },
   ]);
 
