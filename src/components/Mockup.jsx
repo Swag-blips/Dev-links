@@ -50,7 +50,6 @@ const Mockup = () => {
         setError("An error occurred while fetching data");
       }
     } catch (error) {
-      console.log(error);
       setError("An error occurred while fetching data");
     }
   };
@@ -188,7 +187,7 @@ const Mockup = () => {
               <img
                 src={profileImg}
                 alt="profile"
-                className="w-[96px] h-[96px] rounded-full object-cover"
+                className="w-[96px] h-[96px] rounded-full object-cover border-[4px] border-[#633CFF]"
               />
             ) : (
               <div className="w-[96px] h-[96px] rounded-full bg-[#EEEEEE] flex items-center justify-center">

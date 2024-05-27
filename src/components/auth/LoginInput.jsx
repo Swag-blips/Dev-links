@@ -29,9 +29,7 @@ const LoginInput = () => {
           },
           error: (err) => getErrorMessage(err),
         });
-      } catch (err) {
-        console.log(err.message);
-      }
+      } catch (err) {}
     }
   };
 

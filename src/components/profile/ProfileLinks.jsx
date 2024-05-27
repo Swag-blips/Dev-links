@@ -47,7 +47,6 @@ const ProfileLinks = ({ isProfile }) => {
       if (err.message.includes("client is offline")) {
         setError("offline");
       } else {
-        console.log(`An error occurred: ${err}`);
         setError(`An error occurred: ${err.message}`);
       }
     } finally {
@@ -68,7 +67,6 @@ const ProfileLinks = ({ isProfile }) => {
 
       setLinksData(links);
     } catch (err) {
-      console.log(`An error occurred: ${err}`);
       setError(`An error occurred: ${err}`);
     }
   };
@@ -86,7 +84,7 @@ const ProfileLinks = ({ isProfile }) => {
 
   if (error === "offline") {
     return <Offline />;
-  } else if ((error === "This page does not exist")) {
+  } else if (error === "This page does not exist") {
     return <NoProfile />;
   }
   if (error) {

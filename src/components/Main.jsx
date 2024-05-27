@@ -21,7 +21,7 @@ const Main = () => {
   const addNewLink = () => {
     setLinks([
       ...links,
-      { id: uuidv4(), platform: "Github", url: "", error: "" }, 
+      { id: uuidv4(), platform: "Github", url: "", error: "" },
     ]);
   };
 
@@ -134,8 +134,6 @@ const Main = () => {
         console.error("Error saving links: ", err);
         toast.error("Error saving links.");
       }
-    } else {
-      console.log("There are validation errors. Fix them before saving.");
     }
   };
 

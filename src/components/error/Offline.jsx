@@ -3,7 +3,7 @@ import noSignal from "../../assets/images/no-signal.png";
 
 const Offline = () => {
   return (
-    <div className="flex flex-col items-center justify-center h-full">
+    <div className="flex flex-col items-center justify-center h-screen">
       <figure>
         <img src={noSignal} alt="no signal" />
       </figure>

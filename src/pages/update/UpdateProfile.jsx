@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from "react";
-import copyLink from "../../assets/images/icon-link-copied-to-clipboard.svg";
 import { validateProfileDetails } from "../../../utils/Validation";
 import { UploadImage } from "../../assets/icons";
 import { storage, db } from "../../../firebase/config";
@@ -8,6 +7,7 @@ import { setDoc, doc, getDoc } from "firebase/firestore";
 import toast from "react-hot-toast";
 import useAuth from "../../../firebase/AuthContext.jsx";
 import iconSave from "../../assets/images/icon-save.svg";
+
 
 const UpdateProfile = () => {
   const [firstName, setFirstName] = useState("");
@@ -39,7 +39,6 @@ const UpdateProfile = () => {
       const downloadURL = await getDownloadURL(snapshot.ref);
       return downloadURL;
     } catch (err) {
-      console.error(`An error occurred during image upload: ${err}`);
       return null;
     }
   };
@@ -54,10 +53,7 @@ const UpdateProfile = () => {
         },
         { merge: true }
       );
-      console.log("Image metadata successfully uploaded");
-    } catch (err) {
-      console.error(`An error occurred while saving metadata: ${err}`);
-    }
+    } catch (err) {}
   };
 
   const generatePreview = (file) => {
@@ -98,8 +94,6 @@ const UpdateProfile = () => {
             console.warn("no image selected");
           }
         }
-
-        console.log("Updated Data:", updatedData);
 
         if (Object.keys(updatedData).length > 0) {
           await setDoc(docRef, updatedData, { merge: true }),
@@ -147,8 +141,6 @@ const UpdateProfile = () => {
         setLastName(data.lastName);
         setPreviewUrl(data.profileImg);
         setOriginalData(data);
-      } else {
-        console.log("No such document!");
       }
     } catch (err) {
       console.error(`Error fetching details: ${err}`);
@@ -157,10 +149,7 @@ const UpdateProfile = () => {
 
   useEffect(() => {
     fetchDetails();
-
   }, []);
-
-
 
   return (
     <section>

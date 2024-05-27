@@ -8,8 +8,6 @@ export function getErrorMessage(error) {
   } else if (error.code === "auth/invalid-credential") {
     return "Invalid email or password";
   } else {
-    // Log for debugging
-    console.log("Unhandled error:", error);
     return `Error: ${
       error.message || "An unexpected error occurred. Please try again."
     }`;

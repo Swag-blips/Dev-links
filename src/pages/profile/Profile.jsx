@@ -8,7 +8,6 @@ import Spinner from "../../../helpers/Spinner";
 const Profile = () => {
   const { currentUser } = useAuth();
   const { id } = useParams();
-
   const isProfile = currentUser && currentUser.uid === id;
 
   return (

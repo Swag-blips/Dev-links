@@ -28,7 +28,7 @@ const Navbar = () => {
           <img src={logo} className="md:hidden" alt="devlinks logo" />
           <img
             src={logoMd}
-            className="hidden md:flex w-[146px] h-[32px]"
+            className="hidden md:flex w-[146px] cursor-pointer h-[32px]"
             alt="devlinks logo md"
           />
         </figure>
