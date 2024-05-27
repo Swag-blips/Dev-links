@@ -23,8 +23,6 @@ const HomePage = () => {
         )
       ) {
         setIsOffline(true);
-      } else {
-        console.error("Error checking connection:", error);
       }
     }
   };

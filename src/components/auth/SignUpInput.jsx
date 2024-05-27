@@ -31,7 +31,6 @@ const SignupInput = () => {
           loading: "Signing up...",
           success: "Account created successfully",
           error: (err) => {
-            console.error("Signup error:", err);
             return getErrorMessage(err);
           },
         });
@@ -49,7 +48,6 @@ const SignupInput = () => {
           navigate("/");
         }
       } catch (err) {
-        console.error("Unexpected error during signup:", err.message);
       }
     }
   };

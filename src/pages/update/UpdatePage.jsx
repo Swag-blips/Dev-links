@@ -23,8 +23,6 @@ const UpdatePage = () => {
         )
       ) {
         setIsOffline(true);
-      } else {
-        console.error("Error checking connection:", error);
       }
     }
   };

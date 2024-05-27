@@ -8,7 +8,6 @@ import toast from "react-hot-toast";
 import useAuth from "../../../firebase/AuthContext.jsx";
 import iconSave from "../../assets/images/icon-save.svg";
 
-
 const UpdateProfile = () => {
   const [firstName, setFirstName] = useState("");
   const [email, setEmail] = useState("");
@@ -90,9 +89,7 @@ const UpdateProfile = () => {
           if (downloadURL) {
             updatedData.profileImg = downloadURL;
             await saveImageMetaData(downloadURL);
-          } else {
-            console.warn("no image selected");
-          }
+          } 
         }
 
         if (Object.keys(updatedData).length > 0) {
@@ -120,7 +117,7 @@ const UpdateProfile = () => {
         }
       }
     } catch (err) {
-      console.error(`An error occurred during profile update: ${err}`);
+
     }
   };
 
@@ -143,7 +140,7 @@ const UpdateProfile = () => {
         setOriginalData(data);
       }
     } catch (err) {
-      console.error(`Error fetching details: ${err}`);
+    
     }
   };
 

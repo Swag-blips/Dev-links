@@ -45,7 +45,6 @@ const Main = () => {
         await deleteDoc(linkDocRef);
         toast.success("Link deleted successfully!");
       } catch (err) {
-        console.error("Error deleting link: ", err);
         toast.error("Error deleting link.");
       }
     }
@@ -70,7 +69,6 @@ const Main = () => {
 
       setLinks(fetchedLinks);
     } catch (err) {
-      console.error("Error fetching links: ", err);
       toast.error("Error fetching links.");
     }
   };
@@ -131,7 +129,6 @@ const Main = () => {
           }
         );
       } catch (err) {
-        console.error("Error saving links: ", err);
         toast.error("Error saving links.");
       }
     }

@@ -32,9 +32,7 @@ const ProfileNav = () => {
           }
         );
       })
-      .catch((err) => {
-        console.error("Failed to copy: ", err);
-      });
+      .catch((err) => {});
   };
 
   const currentUrl = window.location.href;

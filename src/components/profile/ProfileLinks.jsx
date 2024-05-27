@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { db } from "../../../firebase/config";
 import { doc, getDocs, getDoc, collection, query } from "firebase/firestore";
-import useAuth from "../../../firebase/AuthContext";
 import Spinner from "../../../helpers/Spinner";
 import Offline from "../error/Offline";
 import NoProfile from "../error/NoProfile";
@@ -14,7 +13,6 @@ const ProfileLinks = ({ isProfile }) => {
   const [linksData, setLinksData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const { currentUser } = useAuth();
 
   const fetchDetails = async () => {
     try {
