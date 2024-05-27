@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import logo from "../assets/images/logo-devlinks-small.svg";
 import logoMd from "../assets/images/logo-devlinks-large.svg";
-
-import user from "../assets/images/icon-user.svg";
 import eye from "../assets/images/icon-eye.svg";
 import { Link, useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -40,8 +38,8 @@ const Navbar = () => {
               }`}
             >
               <CopyLink
-                height="24"
-                width="24"
+                height="20"
+                width="20"
                 color={isActiveLink ? "#633CFF" : "#737373"}
               />
               <p
@@ -60,8 +58,8 @@ const Navbar = () => {
               }`}
             >
               <Person
-                height="24"
-                width="24"
+                height="20"
+                width="20"
                 color={isActiveUser ? "#633CFF" : "#737373"}
               />
               <p

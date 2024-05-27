@@ -138,7 +138,7 @@ const Main = () => {
   };
 
   return (
-    <main className="w-full h-full flex flex-col p-[1px]">
+    <main className="w-full  h-full flex flex-col p-[1px]">
       <section className="bg-white flex-grow mx-[16px] my-[16px] rounded-[12px] flex flex-col justify-between overflow-y-auto">
         <div className="flex flex-col h-full">
           <div className="flex flex-col pt-[24px] mx-[24px] p-[1px]">

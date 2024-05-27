@@ -51,7 +51,7 @@ const HomePage = () => {
   }
 
   return (
-    <div className="h-screen flex flex-col">
+    <div className="h-screen flex flex-col overflow-y-scroll">
       <Navbar />
       <div className="flex flex-grow xl:flex-row">
         <section className="xl:w-[38.89%] hidden xl:block">
