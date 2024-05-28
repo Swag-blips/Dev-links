@@ -15,6 +15,7 @@ import { FreeCodeCamp } from "./FreeCodeCamp";
 import { Gitlab } from "./Gitlab";
 import { Stack } from "./Stack";
 import { Hashnode } from "./Hashnode";
+import { ArrowRight } from "./ArrowRight";
 
 export {
   Github,
@@ -33,5 +34,6 @@ export {
   Facebook,
   Gitlab,
   Codepen,
+  ArrowRight,
   Codewars,
 };
